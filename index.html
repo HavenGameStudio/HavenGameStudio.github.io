@@ -8,17 +8,43 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <style>
         body {
+            background:
+                linear-gradient(rgba(24, 26, 27, 0.96), rgba(24, 26, 27, 0.96)),
+                url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            font-family: 'Montserrat', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', Arial, sans-serif;
-            color: #e0e0e0;
-            /* Gamer-style dark background image from Unsplash */
-            background:
-                linear-gradient(rgba(24, 26, 27, 0.95), rgba(24, 26, 27, 0.95)),
-                url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
         }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(120deg,
+                    rgba(102, 252, 241, 0.04) 0px,
+                    rgba(102, 252, 241, 0.04) 2px,
+                    transparent 2px,
+                    transparent 40px);
+            z-index: 0;
+            animation: moveBg 10s linear infinite;
+        }
+
+        @keyframes moveBg {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 200px 200px;
+            }
+        }
+
 
         header {
             background: rgba(35, 39, 42, 0.95);
@@ -29,15 +55,15 @@
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 4.5em;
             letter-spacing: 2px;
-            color: #66fcf1;
+            color: #ebf3f2;
             text-shadow: 0 2px 8px #000a;
         }
 
         header p {
-            color: #66fcf1;
-            font-size: 1.2em;
+            color: #b5e1de;
+            font-size: 1.5em;
             margin-top: 10px;
             text-shadow: 0 2px 8px #000a;
         }
@@ -116,8 +142,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -137,32 +162,42 @@
         }
 
         .testimonial-list {
-            width: 100%;
-            overflow: hidden;
+            flex: 1 1 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
             position: relative;
-            min-height: 140px;
+            width: 100%;
+            transition: height 0.6s;
+            /* Remove min-height! */
         }
 
         .testimonial {
-            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
             background: rgba(35, 39, 42, 0.95);
             border-left: 4px solid #66fcf1;
-            padding: 20px;
+            padding: 20px 30px;
             border-radius: 8px;
             font-style: italic;
             color: #b0b0b0;
             box-shadow: 0 1px 8px #0006;
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
+            max-width: 700px;
+            font-size: 1.1em;
+            line-height: 1.6;
             opacity: 0;
-            transition: opacity 0.5s;
+            pointer-events: none;
+            transition: opacity 0.6s;
+            z-index: 1;
+            display: block;
         }
 
         .testimonial.active {
-            display: block;
             opacity: 1;
+            pointer-events: auto;
+            z-index: 2;
             position: relative;
         }
 
@@ -346,6 +381,37 @@
                 </p>
             </div>
             <div class="project">
+                <img src="https://storage.googleapis.com/chipp-images/chat-image-generations/5cfd776c-c2b4-4a08-add1-f3ab917e3249.jpg"
+                    alt="Cards and Magic">
+                <strong>Cards and Magic</strong>
+                <p>
+                    A multiplayer, turn-based strategy game inspired by titles like Axie. Players use a deck of cards to
+                    attack,
+                    defend, and strategize, with each turn granting 2 mana to spend on card actions. Features include
+                    card
+                    shuffling, account authentication and creation, a shop and inventory system for cards, in-app
+                    purchases, and
+                    both multiplayer and vs AI modes. Designed for competitive play and deep strategic choices.
+                </p>
+            </div>
+            <div class="project">
+                <img src="https://storage.googleapis.com/chipp-images/chat-image-generations/57a7a9cc-76d9-4d25-992f-6f54770295aa.jpg"
+                    alt="The Horde">
+                <strong>The Horde</strong>
+                <p>
+                    A 2D top-down pixel art defense game where you must protect your keep from relentless waves of
+                    enemies. As waves
+                    progress, enemy numbers and types increase, introducing tougher foes. Spawn allies like warriors,
+                    archers, and
+                    knights—each unlocked at higher waves and requiring gold to deploy. Purchase gold mines to generate
+                    income, and
+                    level up your allies to strengthen your defenses. Strategic resource management and ally placement
+                    are key to
+                    surviving the horde!
+                </p>
+            </div>
+
+            <div class="project">
                 <img src="https://storage.googleapis.com/chipp-images/chat-image-generations/2a14f41c-440c-4dce-97c5-809edb5ba289.jpg"
                     alt="Emperor's Gambit: The Fog of War">
                 <strong>Emperor's Gambit: The Fog of War</strong>
@@ -415,7 +481,7 @@
         <div class="contact">
             <a href="https://www.linkedin.com/in/adrian-caamino-06b465233/" target="_blank">LinkedIn</a>
             <a href="https://github.com/dopelemmon" target="_blank">GitHub</a>
-            <a href="https://www.facebook.com/Adcaamino/" target="_blank">Facebook</a>
+            <a href="https://www.facebook.com/profile.php?id=61573022082103" target="_blank">Facebook</a>
             <a href="https://drive.google.com/file/d/1EdnkbhzuRcDwbGmdoPavIMVzqkiL6pVj/view?usp=sharing"
                 target="_blank">Resume</a>
         </div>
@@ -424,6 +490,7 @@
     <script>
         let currentTestimonial = 0;
         const testimonials = document.querySelectorAll('.testimonial');
+        const testimonialList = document.querySelector('.testimonial-list');
         const testimonialCount = testimonials.length;
         let testimonialInterval = setInterval(nextTestimonial, 5000);
 
@@ -431,6 +498,11 @@
             testimonials.forEach((t, i) => {
                 t.classList.toggle('active', i === index);
             });
+            // Dynamically set the container height to the active testimonial's height
+            setTimeout(() => {
+                const activeTestimonial = testimonials[index];
+                testimonialList.style.height = activeTestimonial.offsetHeight + "px";
+            }, 10); // Timeout ensures DOM update
         }
 
         function nextTestimonial() {
@@ -451,8 +523,15 @@
         }
 
         // Initialize
-        showTestimonial(currentTestimonial);
+        window.addEventListener('DOMContentLoaded', () => {
+            showTestimonial(currentTestimonial);
+        });
+        window.addEventListener('resize', () => {
+            showTestimonial(currentTestimonial);
+        });
     </script>
+
+
 
 </body>
 
