@@ -112,16 +112,60 @@
             box-shadow: 0 2px 8px #0007;
         }
 
+        .testimonial-carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .carousel-btn {
+            background: none;
+            border: none;
+            color: #66fcf1;
+            font-size: 2em;
+            cursor: pointer;
+            padding: 0 20px;
+            transition: color 0.2s;
+            z-index: 2;
+        }
+
+        .carousel-btn:hover {
+            color: #45a29e;
+        }
+
+        .testimonial-list {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            min-height: 140px;
+        }
+
         .testimonial {
+            display: none;
             background: rgba(35, 39, 42, 0.95);
             border-left: 4px solid #66fcf1;
             padding: 20px;
-            margin: 20px 0;
             border-radius: 8px;
             font-style: italic;
             color: #b0b0b0;
             box-shadow: 0 1px 8px #0006;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
+
+        .testimonial.active {
+            display: block;
+            opacity: 1;
+            position: relative;
+        }
+
 
         .testimonial strong {
             color: #66fcf1;
@@ -327,18 +371,39 @@
 
     <section id="testimonials">
         <h2>Testimonials</h2>
-        <div class="testimonial">
-            "I had the pleasure of working with Adrian on our latest game project, and the experience was nothing short
-            of
-            fantastic. Their expertise in both 2D and 3D Unity development was evident from the start, and they brought
-            a high
-            level of creativity and professionalism to the table. They consistently met deadlines and exceeded our
-            expectations with their innovative solutions and attention to detail. I highly recommend Adrian for any game
-            development project and look forward to collaborating with them again in the future."
-            <br><br>
-            <strong>– Christian Mar Llarina, Game Designer, CPL Game Studio</strong>
+        <div class="testimonial-carousel">
+            <button class="carousel-btn left" onclick="prevTestimonial()">&#8592;</button>
+            <div class="testimonial-list">
+                <div class="testimonial active">
+                    "I had the pleasure of working with Adrian on our latest game project, and the experience was
+                    nothing
+                    short of fantastic. Their expertise in both 2D and 3D Unity development was evident from the start,
+                    and
+                    they brought a high level of creativity and professionalism to the table. They consistently met
+                    deadlines and exceeded our expectations with their innovative solutions and attention to detail. I
+                    highly recommend Adrian for any game development project and look forward to collaborating with them
+                    again in the future."
+                    <br><br>
+                    <strong>– Christian Mar Llarina, Game Designer, CPL Game Studio</strong>
+                </div>
+                <div class="testimonial">
+                    "Adrian's technical skills and creative vision elevated our project beyond expectations. He is a
+                    reliable and talented developer who always delivers on time."
+                    <br><br>
+                    <strong>– Jane Doe, Producer, Indie Games Inc.</strong>
+                </div>
+                <div class="testimonial">
+                    "Working with Adrian was a fantastic experience. His attention to detail and passion for game
+                    development truly set him apart."
+                    <br><br>
+                    <strong>– John Smith, Lead Developer, GameWorks Studio</strong>
+                </div>
+                <!-- Add more testimonials as needed -->
+            </div>
+            <button class="carousel-btn right" onclick="nextTestimonial()">&#8594;</button>
         </div>
     </section>
+
 
     <section id="contact">
         <h2>Contact</h2>
