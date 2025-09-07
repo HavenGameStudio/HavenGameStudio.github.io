@@ -420,6 +420,40 @@
                 target="_blank">Resume</a>
         </div>
     </section>
+
+    <script>
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const testimonialCount = testimonials.length;
+        let testimonialInterval = setInterval(nextTestimonial, 5000);
+
+        function showTestimonial(index) {
+            testimonials.forEach((t, i) => {
+                t.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonialCount;
+            showTestimonial(currentTestimonial);
+            resetInterval();
+        }
+
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonialCount) % testimonialCount;
+            showTestimonial(currentTestimonial);
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(testimonialInterval);
+            testimonialInterval = setInterval(nextTestimonial, 5000);
+        }
+
+        // Initialize
+        showTestimonial(currentTestimonial);
+    </script>
+
 </body>
 
 </html>
