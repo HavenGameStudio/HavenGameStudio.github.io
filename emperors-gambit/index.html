@@ -113,7 +113,6 @@
         loadingBar.style.display = "none";
         fullscreenButton.onclick = () => {
           unityInstance.SetFullscreen(1);
-          goFullScreen(); // enter browser fullscreen on mobile
         };
       }).catch((message) => {
         alert(message);
@@ -121,23 +120,6 @@
     };
 
     document.body.appendChild(script);
-
-  </script>
-  <script>
-    // Fullscreen function
-    function goFullScreen() {
-      const canvas = document.getElementById("unity-canvas");
-      if (canvas.requestFullscreen) {
-        canvas.requestFullscreen();
-      } else if (canvas.webkitRequestFullscreen) { /* Safari */
-        canvas.webkitRequestFullscreen();
-      } else if (canvas.msRequestFullscreen) { /* IE11 */
-        canvas.msRequestFullscreen();
-      }
-    }
-    canvas.addEventListener("click", () => {
-      goFullScreen();
-    });
 
   </script>
 
