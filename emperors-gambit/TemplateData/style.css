@@ -137,30 +137,29 @@
         height: 100vh !important;
     }
 
+    #unity-container {
+        position: relative;
+        /* Make the container the reference point */
+    }
+
     #back-to-portfolio {
-        position: fixed;
-        top: 16px;
-        left: 16px;
-        z-index: 10000;
-
-        padding: 8px 14px;
-        border-radius: 6px;
-
-        background: rgba(20, 22, 24, 0.85);
-        color: #66fcf1;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
+        position: absolute;
+        /* Position it relative to the container */
+        top: 20px;
+        /* Distance from top of canvas */
+        left: 20px;
+        /* Distance from left of canvas */
+        z-index: 10;
+        /* Make sure it’s above canvas and UI elements */
+        padding: 8px 12px;
+        background-color: rgba(0, 0, 0, 0.6);
+        /* semi-transparent dark background */
+        color: white;
         text-decoration: none;
-
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(6px);
-
-        transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+        font-family: sans-serif;
+        border-radius: 5px;
     }
 
     #back-to-portfolio:hover {
-        transform: translateY(-2px);
-        background: rgba(30, 34, 36, 0.95);
-        box-shadow: 0 4px 18px rgba(102, 252, 241, 0.35);
+        background-color: rgba(0, 0, 0, 0.8);
     }
