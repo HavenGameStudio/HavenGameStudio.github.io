@@ -137,11 +137,6 @@
         height: 100vh !important;
     }
 
-    #unity-container {
-        position: relative;
-        /* Make the container the reference point */
-    }
-
     #back-to-portfolio {
         position: absolute;
         /* Position it relative to the container */
