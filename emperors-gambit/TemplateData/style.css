@@ -1,165 +1,152 @@
-    body {
-        padding: 0;
-        margin: 0
-    }
+/* ===== RESET ===== */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    /* black background */
+    font-family: sans-serif;
+}
 
-    #unity-container {
-        position: absolute
-    }
+/* ===== UNITY CONTAINER FULLSCREEN ===== */
+#unity-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+}
 
-    #unity-container.unity-desktop {
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%)
-    }
+/* Unity canvas fills container */
+#unity-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #231F20;
+    touch-action: none;
+    /* prevent gestures scrolling */
+}
 
-    #unity-container.unity-mobile {
-        position: fixed;
-        width: 100%;
-        height: 100%
-    }
+/* ===== LOADING BAR ===== */
+#unity-loading-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 20;
+}
 
+#unity-logo {
+    width: 154px;
+    height: 130px;
+    background: url('unity-logo-dark.png') no-repeat center;
+}
+
+#unity-progress-bar-empty {
+    width: 141px;
+    height: 18px;
+    margin-top: 10px;
+    background: url('progress-bar-empty-dark.png') no-repeat center;
+}
+
+#unity-progress-bar-full {
+    width: 0%;
+    height: 18px;
+    margin-top: 10px;
+    background: url('progress-bar-full-dark.png') no-repeat center;
+}
+
+/* ===== FOOTER ===== */
+#unity-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+#unity-webgl-logo {
+    width: 204px;
+    height: 38px;
+    background: url('webgl-logo.png') no-repeat center;
+}
+
+#unity-build-title {
+    line-height: 38px;
+    font-size: 18px;
+    color: white;
+}
+
+#unity-fullscreen-button {
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    background: url('fullscreen-button.png') no-repeat center;
+}
+
+/* ===== WARNING BANNER ===== */
+#unity-warning {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 10px;
+    display: none;
+    z-index: 30;
+}
+
+/* ===== BACK TO PORTFOLIO BUTTON ===== */
+#back-to-portfolio {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 40;
+    /* always on top */
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#back-to-portfolio:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* ===== MOBILE ADJUSTMENTS ===== */
+@media only screen and (max-width: 1080px) {
+
+    #unity-container,
     #unity-canvas {
-        background: #231F20
-    }
-
-    .unity-mobile #unity-canvas {
-        width: 100%;
-        height: 100%
-    }
-
-    #unity-loading-bar {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        display: none
-    }
-
-    #unity-logo {
-        width: 154px;
-        height: 130px;
-        background: url('unity-logo-dark.png') no-repeat center
-    }
-
-    #unity-progress-bar-empty {
-        width: 141px;
-        height: 18px;
-        margin-top: 10px;
-        margin-left: 6.5px;
-        background: url('progress-bar-empty-dark.png') no-repeat center
-    }
-
-    #unity-progress-bar-full {
-        width: 0%;
-        height: 18px;
-        margin-top: 10px;
-        background: url('progress-bar-full-dark.png') no-repeat center
-    }
-
-    #unity-footer {
-        position: relative
-    }
-
-    .unity-mobile #unity-footer {
-        display: none
-    }
-
-    #unity-webgl-logo {
-        float: left;
-        width: 204px;
-        height: 38px;
-        background: url('webgl-logo.png') no-repeat center
-    }
-
-    #unity-build-title {
-        float: right;
-        margin-right: 10px;
-        line-height: 38px;
-        font-family: arial;
-        font-size: 18px
-    }
-
-    #unity-fullscreen-button {
-        cursor: pointer;
-        float: right;
-        width: 38px;
-        height: 38px;
-        background: url('fullscreen-button.png') no-repeat center
-    }
-
-    #unity-warning {
-        position: absolute;
-        left: 50%;
-        top: 5%;
-        transform: translate(-50%);
-        background: white;
-        padding: 10px;
-        display: none
-    }
-
-    /* ===== FORCE PORTRAIT (9:16) ===== */
-
-    html,
-    body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: #000;
-    }
-
-    /* Override Unity container sizing */
-    #unity-container {
-        position: absolute !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;
-
+        width: 100vw;
         height: 100vh;
-        width: calc(100vh * 9 / 16);
-
-        max-width: 100vw;
-        max-height: calc(100vw * 16 / 9);
-
-        background: #000;
-    }
-
-    /* Force canvas to fill portrait container */
-    #unity-canvas {
-        width: 100% !important;
-        height: 100% !important;
-        background: #231F20;
-    }
-
-    /* Mobile still fills screen, but portrait-only */
-    .unity-mobile #unity-container {
-        width: 100vw !important;
-        height: 100vh !important;
-    }
-
-    #unity-container {
-        position: relative;
-        /* Make the container the reference point */
     }
 
     #back-to-portfolio {
-        position: absolute;
-        /* Position it relative to the container */
-        top: 20px;
-        /* Distance from top of canvas */
-        left: 20px;
-        /* Distance from left of canvas */
-        z-index: 10;
-        /* Make sure it’s above canvas and UI elements */
-        padding: 8px 12px;
-        background-color: rgba(0, 0, 0, 0.6);
-        /* semi-transparent dark background */
-        color: white;
-        text-decoration: none;
-        font-family: sans-serif;
-        border-radius: 5px;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+/* ===== OPTIONAL: FORCE PORTRAIT 9:16 RATIO ===== */
+@media (orientation: landscape) {
+    body {
+        pointer-events: none;
+        /* disable interaction in landscape */
     }
 
-    #back-to-portfolio:hover {
-        background-color: rgba(0, 0, 0, 0.8);
+    #back-to-portfolio {
+        pointer-events: auto;
+        /* allow button to still be clickable */
     }
+}
