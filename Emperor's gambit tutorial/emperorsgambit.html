@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emperor's Gambit: The Fog of War</title>
+
+    <style>
+        :root {
+            --bg: #0f1117;
+            --card: #161b22;
+            --accent: #c9a44c;
+            --text: #e6edf3;
+            --muted: #9da7b3;
+            --border: #30363d;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 40px 0 80px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--accent);
+            margin-top: 40px;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 14px;
+            margin-top: 25px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        th {
+            background: #1f2630;
+            color: var(--accent);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: black;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .play-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .play-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a44c, #f5d06a);
+            color: #000;
+            padding: 18px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: .25s;
+            box-shadow: 0 0 25px rgba(201, 164, 76, .35);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 45px rgba(201, 164, 76, .75);
+        }
+    </style>
+</head>
+
+<body>
+
+    <a class="back-btn" href="index.html">← Back to Portfolio</a>
+
+    <div class="container">
+
+        <h1>Emperor's Gambit: The Fog of War</h1>
+        <p class="subtitle">
+            Strategic Hidden-Information Fantasy Board Game
+        </p>
+
+        <div class="card">
+            <p>
+                <strong>Emperor's Gambit: The Fog of War</strong> is a strategic, hidden-information board game designed
+                for mobile platforms.
+                It combines competitive tactics with fantasy warfare, Warlord abilities, unit promotions, and a
+                mana-based skill system.
+                Players must outsmart their opponent by eliminating the enemy Emperor — or escorting their own Emperor
+                deep into enemy territory.
+            </p>
+        </div>
+
+        <h2>🎯 Objective</h2>
+        <div class="card">
+            <ul>
+                <li>Defeat the enemy <span class="highlight">Emperor</span></li>
+                <li>Move your <span class="highlight">Emperor</span> to the enemy backline</li>
+                <li>Win by opponent timeout</li>
+            </ul>
+        </div>
+
+        <h2>🗺️ Game Board</h2>
+        <div class="card">
+            <ul>
+                <li>Mobile-optimized rectangular board</li>
+                <li>74 total tiles across 10 rows</li>
+                <li>Buff tiles (teleport portals) appear after 20 moves</li>
+                <li>No diagonal movement unless granted by skills</li>
+            </ul>
+        </div>
+
+        <h2>🛡️ Units</h2>
+        <div class="card">
+
+            <table>
+                <tr>
+                    <th>Unit</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+
+                <tr>
+                    <td>Champion</td>
+                    <td>1</td>
+                    <td>Beats all except Assassin</td>
+                </tr>
+                <tr>
+                    <td>Knight</td>
+                    <td>1</td>
+                    <td>Strong melee</td>
+                </tr>
+                <tr>
+                    <td>Swordsman</td>
+                    <td>1</td>
+                    <td>Mid-strength attacker</td>
+                </tr>
+                <tr>
+                    <td>Spearman</td>
+                    <td>1</td>
+                    <td>Defensive melee</td>
+                </tr>
+                <tr>
+                    <td>Axeman</td>
+                    <td>1</td>
+                    <td>Offensive melee</td>
+                </tr>
+                <tr>
+                    <td>Crossbow</td>
+                    <td>1</td>
+                    <td>Armored ranged</td>
+                </tr>
+                <tr>
+                    <td>Archer</td>
+                    <td>2</td>
+                    <td>Light ranged</td>
+                </tr>
+                <tr>
+                    <td>Scout</td>
+                    <td>2</td>
+                    <td>Fast recon</td>
+                </tr>
+                <tr>
+                    <td>Footman</td>
+                    <td>3</td>
+                    <td>Standard soldier</td>
+                </tr>
+                <tr>
+                    <td>Apprentice</td>
+                    <td>8</td>
+                    <td>Promotes on enemy back rank</td>
+                </tr>
+                <tr>
+                    <td>Assassin</td>
+                    <td>2</td>
+                    <td>Kills all except Apprentice</td>
+                </tr>
+                <tr>
+                    <td>Emperor</td>
+                    <td>1</td>
+                    <td>Cannot attack</td>
+                </tr>
+
+            </table>
+
+            <p><strong>Total Units:</strong> 24 per player</p>
+            <p><strong>Special Rule:</strong> Same rank clash destroys both units</p>
+
+        </div>
+
+        <h2>🕹️ Core Mechanics</h2>
+        <div class="card">
+
+            <h3>Combat Reveal</h3>
+            <ul>
+                <li>Only the losing piece is removed</li>
+                <li>Winner identity remains hidden</li>
+            </ul>
+
+            <h3>Movement</h3>
+            <ul>
+                <li>Move 1 tile (cardinal directions)</li>
+                <li>Diagonal movement via skills only</li>
+            </ul>
+
+            <h3>Setup Phase</h3>
+            <ul>
+                <li>60 seconds to place units</li>
+                <li>Preset layouts supported</li>
+            </ul>
+
+        </div>
+
+        <h2>🧙 Warlord System</h2>
+        <div class="card">
+
+            <p>Choose from <strong>10 Warlords</strong> each with <strong>2 unique abilities</strong> powered by a mana
+                system.</p>
+
+            <ul>
+                <li>Gain 1 mana per turn</li>
+                <li>Skills have cost and usage limits</li>
+                <li>Use skill and move in the same turn</li>
+            </ul>
+
+            <h3>Example Warlords</h3>
+            <ul>
+                <li>Warlord Green — Summon & revive units</li>
+                <li>Warlord Richard — Tactical diagonal movement</li>
+                <li>Warlord Frost — Freeze enemy turns</li>
+                <li>Warlord Vex — Stealth and decoys</li>
+            </ul>
+
+        </div>
+
+        <h2>⏱️ Timer System</h2>
+        <div class="card">
+            <ul>
+                <li>5 minutes per player</li>
+                <li>+2 seconds increment per turn</li>
+                <li>Pauses during animations and skills</li>
+                <li>Timeout = instant loss</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Win Conditions</h2>
+        <div class="card">
+            <ul>
+                <li>Defeat the enemy Emperor</li>
+                <li>Escort your Emperor to the enemy backline</li>
+                <li>Opponent timer reaches 0</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            © 2026 Emperor's Gambit — Game Design & Development by Adrian Caamino
+        </div>
+
+        <div class="play-section">
+            <h2>🎮 Play Emperor's Gambit</h2>
+            <p>Experience the Fog of War strategy yourself in the playable WebGL version.</p>
+
+            <a class="play-btn" href="https://havengamestudio.github.io/emperors-gambit/" target="_blank">
+                ▶ PLAY NOW
+            </a>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
