@@ -7,9 +7,39 @@
   <title>Unity WebGL Player | EmperorsGambit Fog of War</title>
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css">
+  <style>
+    /* Back to portfolio button */
+    .portfolio-btn {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 9999;
+
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      padding: 7px 12px;
+      border-radius: 7px;
+      text-decoration: none;
+
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      transition: 0.2s;
+    }
+
+    .portfolio-btn:hover {
+      background: #c9a44c;
+      color: #000;
+      border-color: #c9a44c;
+    }
+  </style>
 </head>
 
 <body>
+  <a class="portfolio-btn" href="https://havengamestudio.github.io/" target="_blank">
+    ← Portfolio
+  </a>
   <div id="unity-container" class="unity-desktop">
     <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
     <div id="unity-loading-bar">
