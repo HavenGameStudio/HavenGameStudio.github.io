@@ -34,6 +34,38 @@
       border-color: #c9a44c;
     }
   </style>
+
+  <style>
+    /* Portrait frame for desktop */
+    .portrait-wrapper {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 430px;
+      height: 860px;
+
+      background: black;
+      border-radius: 18px;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* make unity fill portrait frame */
+    .portrait-wrapper canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* dark sidebars */
+    body.desktop-portrait {
+      background: radial-gradient(circle at center, #1a1a1a, #000000 70%);
+    }
+  </style>
 </head>
 
 <body>
@@ -41,19 +73,21 @@
     ← Portfolio
   </a>
 
-  <div id="unity-container" class="unity-desktop">
-    <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-    <div id="unity-loading-bar">
-      <div id="unity-logo"></div>
-      <div id="unity-progress-bar-empty">
-        <div id="unity-progress-bar-full"></div>
+  <div class="portrait-wrapper">
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
       </div>
-    </div>
-    <div id="unity-warning"> </div>
-    <div id="unity-footer">
-      <div id="unity-webgl-logo"></div>
-      <div id="unity-fullscreen-button"></div>
-      <div id="unity-build-title">EmperorsGambit Fog of War</div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">EmperorsGambit Fog of War</div>
+      </div>
     </div>
   </div>
   <script>
