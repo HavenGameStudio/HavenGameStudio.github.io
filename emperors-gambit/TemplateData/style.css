@@ -131,12 +131,6 @@
      background: #231F20;
  }
 
- /* Mobile still fills screen, but portrait-only */
- .unity-mobile #unity-container {
-     width: 100vw !important;
-     height: 100vh !important;
- }
-
  #back-to-portfolio {
      position: absolute;
      /* Position it relative to the container */
