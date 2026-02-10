@@ -135,6 +135,51 @@
             transform: scale(1.08);
             box-shadow: 0 0 45px rgba(201, 164, 76, .75);
         }
+
+        .warlord-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .warlord-card {
+            background: #141922;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            transition: .2s;
+            position: relative;
+        }
+
+        .warlord-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .35);
+        }
+
+        .warlord-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .skill {
+            margin-top: 10px;
+            padding: 10px;
+            background: #0f141b;
+            border-radius: 10px;
+            border: 1px solid #2a313a;
+        }
+
+        .skill-title {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .mana {
+            color: #7ccfff;
+            font-size: 13px;
+        }
     </style>
 </head>
 
@@ -186,70 +231,80 @@
                 <tr>
                     <th>Unit</th>
                     <th>Quantity</th>
-                    <th>Notes</th>
+                    <th>Weakness (Defeated By)</th>
                 </tr>
 
                 <tr>
                     <td>Champion</td>
                     <td>1</td>
-                    <td>Beats all except Assassin</td>
+                    <td>Assassin</td>
                 </tr>
+
                 <tr>
                     <td>Knight</td>
                     <td>1</td>
-                    <td>Strong melee</td>
+                    <td>Champion, Assassin</td>
                 </tr>
+
                 <tr>
                     <td>Swordsman</td>
                     <td>1</td>
-                    <td>Mid-strength attacker</td>
+                    <td>Knight, Champion, Assassin</td>
                 </tr>
+
                 <tr>
                     <td>Spearman</td>
                     <td>1</td>
-                    <td>Defensive melee</td>
+                    <td>Swordsman, Knight, Champion, Assassin</td>
                 </tr>
+
                 <tr>
                     <td>Axeman</td>
                     <td>1</td>
-                    <td>Offensive melee</td>
+                    <td>Spearman, Swordsman, Knight, Champion, Assassin</td>
                 </tr>
+
                 <tr>
                     <td>Crossbow</td>
                     <td>1</td>
-                    <td>Armored ranged</td>
+                    <td>Axeman and all higher ranks</td>
                 </tr>
+
                 <tr>
                     <td>Archer</td>
                     <td>2</td>
-                    <td>Light ranged</td>
+                    <td>Crossbow and all higher ranks</td>
                 </tr>
+
                 <tr>
                     <td>Scout</td>
                     <td>2</td>
-                    <td>Fast recon</td>
+                    <td>Archer and all higher ranks</td>
                 </tr>
+
                 <tr>
                     <td>Footman</td>
                     <td>3</td>
-                    <td>Standard soldier</td>
+                    <td>Scout and all higher ranks</td>
                 </tr>
+
                 <tr>
                     <td>Apprentice</td>
                     <td>8</td>
-                    <td>Promotes on enemy back rank</td>
+                    <td>All units except Assassin</td>
                 </tr>
+
                 <tr>
                     <td>Assassin</td>
                     <td>2</td>
-                    <td>Kills all except Apprentice</td>
+                    <td>Apprentice</td>
                 </tr>
+
                 <tr>
                     <td>Emperor</td>
                     <td>1</td>
-                    <td>Cannot attack</td>
+                    <td>All units (cannot attack)</td>
                 </tr>
-
             </table>
 
             <p><strong>Total Units:</strong> 24 per player</p>
@@ -292,13 +347,79 @@
                 <li>Use skill and move in the same turn</li>
             </ul>
 
-            <h3>Example Warlords</h3>
-            <ul>
-                <li>Warlord Green — Summon & revive units</li>
-                <li>Warlord Richard — Tactical diagonal movement</li>
-                <li>Warlord Frost — Freeze enemy turns</li>
-                <li>Warlord Vex — Stealth and decoys</li>
-            </ul>
+            <h3>Starter Warlords</h3>
+
+            <div class="warlord-grid">
+
+                <!-- GREEN -->
+                <div class="warlord-card">
+                    <div class="warlord-name">🟢 Warlord Green – The Wild Summoner</div>
+
+                    <div class="skill">
+                        <div class="skill-title">Nature’s Reinforcement</div>
+                        <div class="mana">10 Mana • 1 Use</div>
+                        Summon 1 random piece (Apprentice, Scout, or Archer) to your backline.
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-title">Forest Rebirth</div>
+                        <div class="mana">12 Mana • 1 Use</div>
+                        Revive a fallen Apprentice, Footman, Scout, or Archer to your base.
+                    </div>
+                </div>
+
+                <!-- RICHARD -->
+                <div class="warlord-card">
+                    <div class="warlord-name">⚔️ Warlord Richard – The Blade Commander</div>
+
+                    <div class="skill">
+                        <div class="skill-title">Battle Shift</div>
+                        <div class="mana">3 Mana • 6 Uses</div>
+                        Move any piece diagonally by 1 tile.
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-title">King’s Advance</div>
+                        <div class="mana">10 Mana • 1 Use</div>
+                        Move any piece diagonally up to 2 tiles (max to 3rd rank).
+                    </div>
+                </div>
+
+                <!-- EMBER -->
+                <div class="warlord-card">
+                    <div class="warlord-name">🔥 Warlord Ember – The Flame Instigator</div>
+
+                    <div class="skill">
+                        <div class="skill-title">Blazing Swap</div>
+                        <div class="mana">2 Mana • 5 Uses</div>
+                        Swap two adjacent friendly units.
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-title">Sacrificial Blaze</div>
+                        <div class="mana">8 Mana • 2 Uses</div>
+                        Destroy one of your units to summon a Footman at the center row.
+                    </div>
+                </div>
+
+                <!-- SAGE -->
+                <div class="warlord-card">
+                    <div class="warlord-name">🧠 Warlord Sage – The Mind Architect</div>
+
+                    <div class="skill">
+                        <div class="skill-title">Visionary Recall</div>
+                        <div class="mana">4 Mana • 5 Uses</div>
+                        Reveal a random enemy piece for 2 turns.
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-title">Strategic Mirror</div>
+                        <div class="mana">15 Mana • 1 Use</div>
+                        Copy the opponent’s last used Warlord skill.
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 
