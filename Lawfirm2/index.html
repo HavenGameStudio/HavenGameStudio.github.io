@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestige Law Firm</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Reset -->
+    <style>
+        /* CSS Reset */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+
+    <!-- Main Styles -->
+    <style>
+        /* Root variables */
+        :root {
+            --primary-color: #0B3D91;
+            --secondary-color: #F2F2F2;
+            --accent-color: #F28C28;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 90vh;
+            background: url('https://images.unsplash.com/photo-1565130838609-c3a86655db61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bGF3fXx8fHx8MTY5NzQ4OTQ3NA&ixlib=rb-4.0.3&q=80&w=1080') center/cover no-repeat;
+            color: white;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #d9771c;
+        }
+
+        /* About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5rem 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background-color: var(--secondary-color);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .portfolio h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-grid img {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .contact button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .contact button:hover {
+            background-color: #072d6d;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Responsive */
+        @media(max-width:768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .about img {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Prestige Law</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Protecting Your Rights, Securing Your Future</h1>
+            <button>Get Consultation</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-text">
+            <h2>About Us</h2>
+            <p>Prestige Law Firm has over 20 years of experience providing professional legal services. Our dedicated
+                team ensures the best outcome for our clients with integrity and excellence.</p>
+            <p>We specialize in corporate law, civil litigation, family law, and real estate matters. Trust us to guide
+                you through complex legal challenges efficiently.</p>
+        </div>
+        <img src="https://plus.unsplash.com/premium_photo-1742842721059-b80ccaf9bc12?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Law Firm Team">
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <img src="https://plus.unsplash.com/premium_photo-1661306456290-4ef26c1d63e4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Corporate Law">
+                <h3>Corporate Law</h3>
+                <p>Providing expert legal advice for businesses, mergers, contracts, and compliance matters.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://media.istockphoto.com/id/2151064054/photo/close-up-of-civil-litigation-document-and-gavel.jpg?s=2048x2048&w=is&k=20&c=PcTojsaLRTrkCvgMvVfK3wszZjl_HpOlyQp_HYI2Fmk="
+                    alt="Litigation">
+                <h3>Civil Litigation</h3>
+                <p>Representing clients in court for disputes, claims, and civil matters with professional expertise.
+                </p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400"
+                    alt="Family Law">
+                <h3>Family Law</h3>
+                <p>Handling divorce, custody, adoption, and other family-related legal concerns with care.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://plus.unsplash.com/premium_photo-1661544345890-928b4fd9eeab?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Real Estate Law">
+                <h3>Real Estate Law</h3>
+                <p>Assisting with property transactions, disputes, contracts, and legal documentation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2>Our Work</h2>
+        <div class="portfolio-grid">
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Project 1">
+            <img src="https://plus.unsplash.com/premium_photo-1698084059560-9a53de7b816b?q=80&w=1622&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Project 2">
+            <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Project 3">
+            <img src="https://plus.unsplash.com/premium_photo-1695942301094-472c4dbf9130?q=80&w=1668&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Project 4">
+            <img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400"
+                alt="Project 5">
+            <img src="https://plus.unsplash.com/premium_photo-1694476607274-003dd175d073?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Project 6">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Prestige Law Firm. All rights reserved.
+    </footer>
+
+    <!-- Website Comment -->
+    <!-- Website mockup generated by Blackbox AI -->
+
+</body>
+
+</html>
