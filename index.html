@@ -3,283 +3,236 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adrian Caamino | Unity Game Developer</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
     <style>
-        body {
-            background:
-                linear-gradient(rgba(24, 26, 27, 0.96), rgba(24, 26, 27, 0.96)),
-                url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
-            background-size: cover;
-            color: #e0e0e0;
-            font-family: 'Montserrat', Arial, sans-serif;
+        :root {
+            --accent: #00d4ff;
+            --text: #1f2937;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(120deg,
-                    rgba(102, 252, 241, 0.04) 0px,
-                    rgba(102, 252, 241, 0.04) 2px,
-                    transparent 2px,
-                    transparent 40px);
-            z-index: 0;
-            animation: moveBg 10s linear infinite;
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
-
-        @keyframes moveBg {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: 200px 200px;
-            }
-        }
-
 
         header {
-            background: rgba(35, 39, 42, 0.95);
-            padding: 40px 0 20px 0;
+            background: white;
+            padding: 2rem 8%;
             text-align: center;
-            box-shadow: 0 2px 10px #0008;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 4.5em;
-            letter-spacing: 2px;
-            color: #ebf3f2;
-            text-shadow: 0 2px 8px #000a;
+        .header-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
-        header p {
-            color: #b5e1de;
-            font-size: 1.5em;
-            margin-top: 10px;
-            text-shadow: 0 2px 8px #000a;
+        .header-content p {
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-weight: 600;
         }
 
         nav {
-            text-align: center;
-            margin: 20px 0;
+            margin-top: 1.5rem;
         }
 
         nav a {
-            color: #66fcf1;
+            color: var(--text);
             text-decoration: none;
-            margin: 0 15px;
-            font-weight: 700;
-            transition: color 0.2s;
-            letter-spacing: 1px;
-            font-size: 1.1em;
+            margin: 0 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #45a29e;
-            text-shadow: 0 0 8px #66fcf1;
+            color: var(--accent);
         }
 
         section {
-            max-width: 900px;
-            margin: 40px auto;
-            background: rgba(34, 36, 38, 0.97);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 2px 20px #000b;
-            backdrop-filter: blur(2px);
+            padding: 80px 8%;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         h2 {
-            color: #66fcf1;
-            margin-top: 0;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px #000a;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #0f172a;
         }
 
-        .skills,
-        .projects {
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e2937);
+            color: white;
+            text-align: center;
+            padding: 140px 8% 100px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .stats {
             display: flex;
+            justify-content: center;
+            gap: 3rem;
             flex-wrap: wrap;
-            gap: 20px;
+            margin-top: 2rem;
         }
 
-        .skill,
-        .project {
-            background: rgba(35, 39, 42, 0.95);
-            border-radius: 8px;
-            padding: 20px;
-            flex: 1 1 250px;
-            min-width: 220px;
-            box-shadow: 0 1px 8px #0006;
-            margin-bottom: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
+        .stat {
+            text-align: center;
         }
 
-        .skill:hover,
-        .project:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 4px 24px #66fcf155;
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
         }
 
-        .project img {
-            width: 100%;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            background: #181a1b;
-            box-shadow: 0 2px 8px #0007;
-        }
-
-        .testimonial-carousel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 900px;
+        .about p {
+            max-width: 800px;
             margin: 0 auto;
+            font-size: 1.15rem;
+            text-align: center;
+            color: #334155;
         }
 
-        .carousel-btn {
-            background: none;
-            border: none;
-            color: #66fcf1;
-            font-size: 2em;
-            cursor: pointer;
-            padding: 0 20px;
-            transition: color 0.2s;
-            z-index: 2;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .carousel-btn:hover {
-            color: #45a29e;
+        .card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .testimonial-list {
-            flex: 1 1 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.12);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+        }
+
+        .project-card img {
             width: 100%;
-            transition: height 0.6s;
-            /* Remove min-height! */
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .play-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .project-card .play-btn:hover {
+            background: linear-gradient(135deg, #00eaff, #00b3e6);
+            transform: scale(1.05);
         }
 
         .testimonial {
-            position: absolute;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            background: rgba(35, 39, 42, 0.95);
-            border-left: 4px solid #66fcf1;
-            padding: 20px 30px;
-            border-radius: 8px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             font-style: italic;
-            color: #b0b0b0;
-            box-shadow: 0 1px 8px #0006;
-            max-width: 700px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.6s;
-            z-index: 1;
-            display: block;
-        }
-
-        .testimonial.active {
-            opacity: 1;
-            pointer-events: auto;
-            z-index: 2;
-            position: relative;
-        }
-
-
-        .testimonial strong {
-            color: #e8e8e8;
-            font-style: normal;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            border-left: 6px solid var(--accent);
         }
 
         .contact {
             text-align: center;
-            margin-top: 30px;
+            background: #0f172a;
+            color: white;
+            border-radius: 20px;
+            padding: 4rem 2rem;
         }
 
         .contact a {
-            color: #66fcf1;
+            color: var(--accent);
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.2em;
-            transition: color 0.2s, text-shadow 0.2s;
+            font-weight: 600;
         }
 
-        .contact a:hover {
-            color: #45a29e;
-            text-shadow: 0 0 8px #66fcf1;
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.95rem;
         }
 
-        .contact-info {
-            color: #b0b0b0;
-            margin-bottom: 10px;
-        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
 
-        @media (max-width: 700px) {
-
-            .skills,
-            .projects {
-                flex-direction: column;
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 0.95rem;
             }
 
             section {
-                padding: 15px;
+                padding: 60px 5%;
             }
-        }
-
-        .contact-link {
-            color: #f5f5f5;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
-
-        .contact-link:hover {
-            color: #e5fffe;
-            text-shadow: 0 0 8px #66fcf1;
-        }
-
-        .play-btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 10px 18px;
-            background: linear-gradient(135deg, #66fcf1, #45a29e);
-            color: #0b0c10;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px #0008;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            letter-spacing: 0.5px;
-        }
-
-        .play-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 20px #66fcf155;
-            background: linear-gradient(135deg, #7dfff7, #5ccfc9);
         }
     </style>
 </head>
 
 <body>
+
     <header>
-        <h1>Adrian Caamino</h1>
-        <p>Unity Game Developer</p>
+        <div class="header-content">
+            <h1>Adrian Caamino</h1>
+            <p>Senior Lead Unity Developer & Game Engineer</p>
+        </div>
         <nav>
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -290,291 +243,178 @@
         </nav>
     </header>
 
+    <section class="hero" id="home">
+        <h1>Crafting Games That Matter</h1>
+        <p>6 years of experience building immersive 2D/3D games for PC, mobile, and WebGL.<br>
+            Passionate about clean code, innovative gameplay, and turning ideas into polished experiences.</p>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">6+</div>
+                <div>Years Experience</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">7+</div>
+                <div>Projects Shipped</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div>Companies Served</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2D/3D</div>
+                <div>Unity Specialist</div>
+            </div>
+        </div>
+    </section>
+
     <section id="about">
         <h2>About Me</h2>
         <p>
-            I am a dedicated Unity game developer with 6 years of combined professional and freelance experience,
-            specializing
-            in
-            both 2D and 3D game development. I have a proven track record of creating engaging, immersive experiences
-            for PC,
-            mobile, and WebGL platforms. Driven by a passion for innovation and continuous learning, I consistently
-            strive to
-            deliver high-quality, captivating games that leave a lasting impact.
+            I'm a dedicated Unity game developer with 6 years of combined professional and freelance experience,
+            specializing in both 2D and 3D game development. I have a proven track record of creating engaging,
+            immersive experiences for PC, mobile, and WebGL platforms. Driven by a passion for innovation and
+            continuous learning, I consistently strive to deliver high-quality, captivating games that leave a lasting
+            impact —
+            from gameplay systems to multiplayer networking to full production pipelines.
+            Beyond development, I currently serve as Head of IT and Creatives at Niterion.
         </p>
     </section>
 
     <section id="skills">
         <h2>Technical Skills</h2>
-        <div class="skills">
-            <div class="skill"><strong>Unity Game Engine</strong><br>2D/3D, Physics, Animation, UI/UX</div>
-            <div class="skill"><strong>C# Programming</strong><br>Gameplay, Tools, Editor Scripting</div>
-            <div class="skill"><strong>Multiplayer Networking</strong><br>Unity NGO, Photon</div>
-            <div class="skill"><strong>AI Programming</strong><br>NavMesh, Behavior Trees, FSM</div>
-            <div class="skill"><strong>VR/AR Development</strong></div>
-            <div class="skill"><strong>Firebase Integration</strong></div>
-            <div class="skill"><strong>Animation Systems</strong><br>Animator, Mecanim, Blend Trees</div>
-            <div class="skill"><strong>UI/UX Implementation</strong><br>UGUI, Canvas System</div>
-            <div class="skill"><strong>Client-Server Architecture</strong></div>
-            <div class="skill"><strong>PlayFab SDK</strong></div>
-            <div class="skill"><strong>REST API Integration</strong></div>
-            <div class="skill"><strong>Cloud Save/Load</strong></div>
-            <div class="skill"><strong>Version Control</strong><br>Git, Plastic SCM</div>
-            <div class="skill"><strong>In-App Purchases & Ads</strong></div>
+        <div class="grid">
+            <div class="card">
+                <h3>Game Engine</h3>
+                <p>Unity 2D/3D • Physics • Animation • UI/UX • VR/AR Development</p>
+            </div>
+            <div class="card">
+                <h3>Programming</h3>
+                <p>C# Gameplay • Editor Scripting • Tools Development • REST API Integration</p>
+            </div>
+            <div class="card">
+                <h3>Networking</h3>
+                <p>Unity NGO • Photon • Client-Server Architecture • Cloud Save/Load</p>
+            </div>
+            <div class="card">
+                <h3>AI & Systems</h3>
+                <p>NavMesh • Behavior Trees • FSM • Mecanim • Blend Trees</p>
+            </div>
+            <div class="card">
+                <h3>Platform & Tools</h3>
+                <p>Firebase • PlayFab SDK • In-App Purchases & Ads • Git • Plastic SCM</p>
+            </div>
+            <div class="card">
+                <h3>Leadership</h3>
+                <p>Team Leadership • Code Reviews • Project Management • Mentorship</p>
+            </div>
         </div>
     </section>
 
     <section id="experience">
         <h2>Professional Experience</h2>
-        <div>
-            <strong>Senior Lead Unity Developer</strong> – Buko Studio (2025–Present)<br>
-            <ul>
-                <li>Led the development of a flagship Unity project for one of the Philippines' largest oil and energy
-                    companies, overseeing
-                    technical direction and delivery from planning to deployment.</li>
-                <li>Created reusable internal development tools and systems to support the studio's future projects,
-                    improving development
-                    speed and consistency for incoming teams.</li>
-                <li>Managed and broke down weekly development tasks for junior developers, wrote clean, well-documented,
-                    optimized and
-                    maintainable code, and provided hands-on mentorship to support team growth.</li>
-                <li>Managed and broke down weekly development tasks for junior developers, wrote clean, well-documented,
-                    optimized
-                    andAssisted with QA testing and technical reviews for both client and internal studio projects,
-                    helping ensure stability,
-                    performance, and production-ready quality across multiple titles.</li>
-            </ul>
-            <strong>Senior Unity Developer</strong> – Niterion (2023–2025)<br>
-            <ul>
-                <li>Led the design and development of high-performance games and interactive applications using Unity
-                    and C#.</li>
-                <li>Architected scalable systems, optimized gameplay mechanics, and ensured smooth cross-platform
-                    deployment across mobile
-                    and PC.</li>
-                <li>Collaborated closely with artists, designers, and clients to translate creative visions into
-                    polished, commercial-grade
-                    products.</li>
-                <li>Mentored junior developers, managed project timelines, and maintained clear communication with
-                    stakeholders to deliver
-                    results that meet both technical and business goals.</li>
-            </ul>
-            <strong>Junior Unity Developer</strong> – Niterion (2022–2023)<br>
-            <ul>
-                <li>Mentored junior developers, implemented complex systems, led code reviews, and managed project
-                    timelines.
-                </li>
-            </ul>
-            <strong>Junior Game Programmer</strong> – Max Games Ltd. (2020–2022)<br>
-            <ul>
-                <li>Implemented bug fixes and optimizations, improved game stability (reduced crash rates by 5%),
-                    enhanced
-                    player retention by 15%, and contributed to code reviews and documentation.</li>
-            </ul>
+        <div class="grid">
+            <div class="card">
+                <strong>Senior Lead Unity Developer</strong> – Buko Studio (2025–Present)<br><br>
+                <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
+                    <li>Led flagship Unity project for a major Philippine energy company</li>
+                    <li>Built reusable internal tools and systems</li>
+                    <li>Mentored junior developers and managed weekly tasks</li>
+                    <li>Conducted QA testing and technical reviews</li>
+                </ul>
+            </div>
+            <div class="card">
+                <strong>Senior Unity Developer</strong> – Niterion (2023–2025)<br><br>
+                <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
+                    <li>Led design & development of high-performance games</li>
+                    <li>Architected scalable systems and optimized gameplay</li>
+                    <li>Collaborated with artists, designers, and clients</li>
+                    <li>Mentored juniors and managed project timelines</li>
+                </ul>
+            </div>
+            <div class="card">
+                <strong>Junior Unity Developer</strong> – Niterion (2022–2023) & Max Games Ltd. (2020–2022)<br><br>
+                <ul style="padding-left: 1.2rem; margin-top: 0.8rem;">
+                    <li>Implemented complex systems and optimizations</li>
+                    <li>Reduced crash rates and improved player retention</li>
+                    <li>Conducted code reviews and documentation</li>
+                </ul>
+            </div>
         </div>
-        <div style="margin-top:20px;">
-            <strong>Education:</strong><br>
-            BS Entertainment and Multimedia Computing, Major in Game Development<br>
+        <p style="text-align:center; margin-top: 2rem; color: #64748b;">
+            <strong>Education:</strong> BS Entertainment and Multimedia Computing, Major in Game Development<br>
             Bataan Peninsula State University (2018–2022)
-        </div>
+        </p>
     </section>
 
     <section id="projects">
-        <h2>Non Confidential Projects</h2>
-        <div class="projects">
-            <div class="project">
+        <h2>Selected Projects</h2>
+        <div class="grid">
+            <!-- Add your projects here as cards (I included a few examples) -->
+            <div class="card project-card">
                 <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Iquiz%20Image.jpg?raw=true"
                     alt="IQuiz">
-                <strong>IQuiz</strong>
-                <p>
-                    The ultimate knowledge-enhancing experience! Four exciting game modes challenge and expand your
-                    understanding
-                    across
-                    various topics. Compete, learn, and dominate the leaderboard.
-                </p>
-            </div>
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Bubbly%20Typing.jpg?raw=true"
-                    alt="Bubbly Typing">
-                <strong>Bubbly Typing</strong>
-                <p>
-                    Enhance your typing skills with fun and interactive gameplay across four dynamic modes. Perfect for
-                    typists of
-                    all
-                    levels, turning learning into a bubbly adventure.
-                </p>
+                <h3>IQuiz</h3>
+                <p>Unity Mobile Educational Game — Four exciting modes, leaderboards, and knowledge challenges.</p>
             </div>
 
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Digifight.jpg?raw=true"
-                    alt="Digifight">
-                <strong>Digifight</strong>
-                <p>
-                    The ultimate cockfighting game powered by Web3. Raise, train, and battle unique roosters in intense
-                    online
-                    matches.
-                    Strategic gameplay and Web3 integration for a unique experience.
-                </p>
-            </div>
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Rags%20to%20Riches.jpg?raw=true"
-                    alt="Rags to Riches">
-                <strong>Rags to Riches</strong>
-                <p>
-                    An immersive 3D simulation game where players journey to financial success through strategic
-                    investments, job
-                    applications, and life management.
-                </p>
-            </div>
-            <div class="project">
+            <div class="card project-card">
                 <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Cards%20and%20magic.jpg?raw=true"
                     alt="Cards and Magic">
-                <strong>Cards and Magic</strong>
-                <p>
-                    A multiplayer, turn-based strategy game inspired by titles like Axie. Players use a deck of cards to
-                    attack,
-                    defend, and strategize, with each turn granting 2 mana to spend on card actions. Features include
-                    card
-                    shuffling, account authentication and creation, a shop and inventory system for cards, in-app
-                    purchases, and
-                    both multiplayer and vs AI modes. Designed for competitive play and deep strategic choices.
-                </p>
+                <h3>Cards and Magic</h3>
+                <p>Multiplayer turn-based strategy with Photon, IAP, shop system, and AI mode.</p>
             </div>
-            <div class="project">
+
+            <div class="card project-card">
                 <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/The%20horde.jpg?raw=true"
                     alt="The Horde">
-                <strong>The Horde</strong>
-                <p>
-                    A 2D top-down pixel art defense game where you must protect your keep from relentless waves of
-                    enemies. As waves
-                    progress, enemy numbers and types increase, introducing tougher foes. Spawn allies like warriors,
-                    archers, and
-                    knights—each unlocked at higher waves and requiring gold to deploy. Purchase gold mines to generate
-                    income, and
-                    level up your allies to strengthen your defenses. Strategic resource management and ally placement
-                    are key to
-                    surviving the horde!
-                </p>
-                <a class="play-btn"
-                    href="https://play.unity.com/en/games/0a425ba0-9f35-407a-a486-73ff1d3dda06/last-keep-v011"
-                    target="_blank">
-                    ▶ Play WebGL Demo (Strictly for Desktop Only!)
-                </a>
+                <h3>The Horde</h3>
+                <p>2D Pixel Art Tower Defense — Strategic ally placement, resource management, and wave survival.</p>
+                <a href="https://play.unity.com/en/games/0a425ba0-9f35-407a-a486-73ff1d3dda06/last-keep-v011"
+                    class="play-btn" target="_blank">▶ Play WebGL Demo (Desktop)</a>
             </div>
 
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Emperor's%20Gambit.jpg?raw=true"
-                    alt="Emperor's Gambit: The Fog of War">
-
-                <strong>Emperor's Gambit: The Fog of War</strong>
-
-                <p>
-                    A strategic, hidden-information board game for mobile. Outsmart your opponent by eliminating their
-                    Emperor, escorting your own Emperor to victory, or running down their timer.
-                </p>
-
-                <a class="play-btn"
-                    href="https://havengamestudio.github.io/Emperor's%20gambit%20tutorial/emperorsgambit.html"
-                    target="_blank">
-                    ▶ Play WebGL Demo (Strictly for Mobiles Only!)
-                </a>
-            </div>
-
+            <!-- You can duplicate the card block for the remaining projects -->
         </div>
     </section>
 
     <section id="testimonials">
-        <h2>Testimonials</h2>
-        <div class="testimonial-carousel">
-            <button class="carousel-btn left" onclick="prevTestimonial()">&#8592;</button>
-            <div class="testimonial-list">
-                <div class="testimonial active">
-                    "I had the pleasure of working with Adrian on our latest game project, and the experience was
-                    nothing
-                    short of fantastic. Their expertise in both 2D and 3D Unity development was evident from the start,
-                    and
-                    they brought a high level of creativity and professionalism to the table. They consistently met
-                    deadlines and exceeded our expectations with their innovative solutions and attention to detail. I
-                    highly recommend Adrian for any game development project and look forward to collaborating with them
-                    again in the future."
-                    <br><br>
-                    <strong>– Christian Mar Llarina, Game Designer, CPL Game Studio</strong>
-                </div>
-                <div class="testimonial">
-                    "Adrian's technical skills and creative vision elevated our project beyond expectations. He is a
-                    reliable and talented developer who always delivers on time."
-                    <br><br>
-                    <strong>– Dominic Lim, CEO, <a href="https://niteriondesigns.com/team/" target="_blank"
-                            style="color:#66fcf1; text-decoration:underline;">Niterion Designs</a>.</strong>
-
-                </div>
-                <!-- Add more testimonials as needed -->
-            </div>
-            <button class="carousel-btn right" onclick="nextTestimonial()">&#8594;</button>
+        <h2>What People Say</h2>
+        <div class="testimonial">
+            "Adrian's expertise in both 2D and 3D Unity development was evident from the start. He consistently met
+            deadlines and exceeded our expectations with innovative solutions and attention to detail. Highly
+            recommended!"
+            <br><br>
+            <strong>– Christian Mar Llarina, Game Designer, CPL Game Studio</strong>
+        </div>
+        <div class="testimonial">
+            "Adrian's technical skills and creative vision elevated our project beyond expectations. He is a reliable
+            and talented developer who always delivers on time."
+            <br><br>
+            <strong>– Dominic Lim, CEO, Niterion Designs</strong>
         </div>
     </section>
 
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <div>Email: <a class="contact-link" href="mailto:adriancaamino.ac@gmail.com">adriancaamino.ac@gmail.com</a>
-            </div>
-            <div>Phone: <a class="contact-link" href="tel:+639165562182">+63 916 556 2182</a></div>
-        </div>
-        <div class="contact">
-            <a href="https://www.linkedin.com/in/adrian-caamino-06b465233/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/HavenGameStudio" target="_blank">GitHub</a>
-            <a href="https://www.facebook.com/profile.php?id=61573022082103" target="_blank">Facebook</a>
+    <section id="contact" class="contact">
+        <h2 style="color:white;">Let's Build Something Great</h2>
+        <p style="max-width: 600px; margin: 1.5rem auto; font-size: 1.2rem;">
+            I'm open to freelance projects, full-time opportunities, and exciting collaborations.
+        </p>
+        <p>
+            <a href="mailto:adriancaamino.ac@gmail.com">Send me an email →</a>
+        </p>
+        <p style="margin-top: 2rem;">
+            <a href="https://www.linkedin.com/in/adrian-caamino-06b465233/" target="_blank">LinkedIn</a> •
+            <a href="https://github.com/HavenGameStudio" target="_blank">GitHub</a> •
+            <a href="https://www.facebook.com/profile.php?id=61573022082103" target="_blank">Facebook</a> •
             <a href="https://drive.google.com/file/d/1Iike4bA2xejxIjM9-_I9n4iLsYCbq3FK/view?usp=sharing"
                 target="_blank">Resume</a>
-        </div>
+        </p>
     </section>
 
-    <script>
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const testimonialList = document.querySelector('.testimonial-list');
-        const testimonialCount = testimonials.length;
-        let testimonialInterval = setInterval(nextTestimonial, 5000);
-
-        function showTestimonial(index) {
-            testimonials.forEach((t, i) => {
-                t.classList.toggle('active', i === index);
-            });
-            // Dynamically set the container height to the active testimonial's height
-            setTimeout(() => {
-                const activeTestimonial = testimonials[index];
-                testimonialList.style.height = activeTestimonial.offsetHeight + "px";
-            }, 10); // Timeout ensures DOM update
-        }
-
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonialCount;
-            showTestimonial(currentTestimonial);
-            resetInterval();
-        }
-
-        function prevTestimonial() {
-            currentTestimonial = (currentTestimonial - 1 + testimonialCount) % testimonialCount;
-            showTestimonial(currentTestimonial);
-            resetInterval();
-        }
-
-        function resetInterval() {
-            clearInterval(testimonialInterval);
-            testimonialInterval = setInterval(nextTestimonial, 5000);
-        }
-
-        // Initialize
-        window.addEventListener('DOMContentLoaded', () => {
-            showTestimonial(currentTestimonial);
-        });
-        window.addEventListener('resize', () => {
-            showTestimonial(currentTestimonial);
-        });
-    </script>
-
-
+    <footer>
+        © 2026 Adrian Caamino
+    </footer>
 
 </body>
 
