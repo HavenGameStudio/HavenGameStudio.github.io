@@ -2,580 +2,1555 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adrian Caamino | Unity Game Developer</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background:
-                linear-gradient(rgba(24, 26, 27, 0.96), rgba(24, 26, 27, 0.96)),
-                url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
-            background-size: cover;
-            color: #e0e0e0;
-            font-family: 'Montserrat', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrian Caamino — Senior Lead Unity Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --background: #0d1117;
+      --foreground: #e8edf5;
+      --card: #121820;
+      --card-border: #1e2733;
+      --primary: #2dd4bf;
+      --primary-foreground: #0d1117;
+      --muted-foreground: #6b7a90;
+      --border: #1e2733;
+      --secondary: #161e2a;
+    }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(120deg,
-                    rgba(102, 252, 241, 0.04) 0px,
-                    rgba(102, 252, 241, 0.04) 2px,
-                    transparent 2px,
-                    transparent 40px);
-            z-index: 0;
-            animation: moveBg 10s linear infinite;
-        }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        @keyframes moveBg {
-            0% {
-                background-position: 0 0;
-            }
+    html {
+      scroll-behavior: smooth;
+    }
 
-            100% {
-                background-position: 200px 200px;
-            }
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Space Grotesk', sans-serif;
+    }
 
-        header {
-            background: rgba(35, 39, 42, 0.95);
-            padding: 40px 0 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px #0008;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 4.5em;
-            letter-spacing: 2px;
-            color: #ebf3f2;
-            text-shadow: 0 2px 8px #000a;
-        }
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 28px;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 6px;
+      transition: opacity 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
 
-        header p {
-            color: #b5e1de;
-            font-size: 1.5em;
-            margin-top: 10px;
-            text-shadow: 0 2px 8px #000a;
-        }
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
 
-        nav {
-            text-align: center;
-            margin: 20px 0;
-        }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 28px;
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 6px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
 
-        nav a {
-            color: #66fcf1;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 700;
-            transition: color 0.2s;
-            letter-spacing: 1px;
-            font-size: 1.1em;
-        }
+    .btn-outline:hover {
+      border-color: rgba(45, 212, 191, 0.5);
+      transform: translateY(-1px);
+    }
 
-        nav a:hover {
-            color: #45a29e;
-            text-shadow: 0 0 8px #66fcf1;
-        }
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
 
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            background: rgba(34, 36, 38, 0.97);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 2px 20px #000b;
-            backdrop-filter: blur(2px);
-        }
+    /* ===== NAVBAR ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      transition: all 0.3s;
+    }
 
-        h2 {
-            color: #66fcf1;
-            margin-top: 0;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px #000a;
-        }
+    header.scrolled {
+      background: rgba(13, 17, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-        .skills,
-        .projects {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+    }
 
-        .skill,
-        .project {
-            background: rgba(35, 39, 42, 0.95);
-            border-radius: 8px;
-            padding: 20px;
-            flex: 1 1 250px;
-            min-width: 220px;
-            box-shadow: 0 1px 8px #0006;
-            margin-bottom: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    header nav {
+      display: flex;
+      align-items: center;
+    }
 
-        .skill:hover,
-        .project:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 4px 24px #66fcf155;
-        }
+    header nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      margin: 0 16px;
+      transition: color 0.2s;
+    }
 
-        .project img {
-            width: 100%;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            background: #181a1b;
-            box-shadow: 0 2px 8px #0007;
-        }
+    header nav a:hover {
+      color: var(--foreground);
+    }
 
-        .testimonial-carousel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    #mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--foreground);
+      font-size: 22px;
+      cursor: pointer;
+    }
 
-        .carousel-btn {
-            background: none;
-            border: none;
-            color: #66fcf1;
-            font-size: 2em;
-            cursor: pointer;
-            padding: 0 20px;
-            transition: color 0.2s;
-            z-index: 2;
-        }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(13, 17, 23, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 0;
+    }
 
-        .carousel-btn:hover {
-            color: #45a29e;
-        }
+    .mobile-nav.open {
+      display: flex;
+    }
 
-        .testimonial-list {
-            flex: 1 1 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-            width: 100%;
-            transition: height 0.6s;
-            /* Remove min-height! */
-        }
+    .mobile-nav a {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      color: var(--muted-foreground);
+    }
 
-        .testimonial {
-            position: absolute;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            background: rgba(35, 39, 42, 0.95);
-            border-left: 4px solid #66fcf1;
-            padding: 20px 30px;
-            border-radius: 8px;
-            font-style: italic;
-            color: #b0b0b0;
-            box-shadow: 0 1px 8px #0006;
-            max-width: 700px;
-            font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.6s;
-            z-index: 1;
-            display: block;
-        }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
 
-        .testimonial.active {
-            opacity: 1;
-            pointer-events: auto;
-            z-index: 2;
-            position: relative;
-        }
+    .mobile-nav a:hover {
+      color: var(--foreground);
+    }
 
+    /* ===== SECTION COMMON ===== */
+    section {
+      padding: 112px 48px;
+      max-width: 1152px;
+      margin: 0 auto;
+    }
 
-        .testimonial strong {
-            color: #e8e8e8;
-            font-style: normal;
-        }
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
 
-        .contact {
-            text-align: center;
-            margin-top: 30px;
-        }
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
 
-        .contact a {
-            color: #66fcf1;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.2em;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
 
-        .contact a:hover {
-            color: #45a29e;
-            text-shadow: 0 0 8px #66fcf1;
-        }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .contact-info {
-            color: #b0b0b0;
-            margin-bottom: 10px;
-        }
+    .fade-up-delay-1 {
+      transition-delay: 0.1s;
+    }
 
-        @media (max-width: 700px) {
+    .fade-up-delay-2 {
+      transition-delay: 0.2s;
+    }
 
-            .skills,
-            .projects {
-                flex-direction: column;
-            }
+    .fade-up-delay-3 {
+      transition-delay: 0.3s;
+    }
 
-            section {
-                padding: 15px;
-            }
-        }
+    .fade-up-delay-4 {
+      transition-delay: 0.4s;
+    }
 
-        .contact-link {
-            color: #f5f5f5;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
+    /* ===== HERO ===== */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: 80px 48px 40px;
+      max-width: 1152px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
 
-        .contact-link:hover {
-            color: #e5fffe;
-            text-shadow: 0 0 8px #66fcf1;
-        }
+    .hero-glow-1 {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.05);
+      filter: blur(150px);
+      top: -100px;
+      left: -150px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .play-btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 10px 18px;
-            background: linear-gradient(135deg, #66fcf1, #45a29e);
-            color: #0b0c10;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px #0008;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            letter-spacing: 0.5px;
-        }
+    .hero-glow-2 {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.04);
+      filter: blur(150px);
+      bottom: 0;
+      right: -100px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .play-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 20px #66fcf155;
-            background: linear-gradient(135deg, #7dfff7, #5ccfc9);
-        }
-    </style>
+    .hero-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(45, 212, 191, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #home>*:not(.hero-glow-1):not(.hero-glow-2):not(.hero-grid-overlay) {
+      position: relative;
+      z-index: 1;
+    }
+
+    #home h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      background: rgba(45, 212, 191, 0.08);
+      border: 1px solid rgba(45, 212, 191, 0.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.4);
+      }
+
+      50% {
+        opacity: 0.7;
+        transform: scale(0.85);
+        box-shadow: 0 0 0 6px rgba(45, 212, 191, 0);
+      }
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 500;
+      color: var(--muted-foreground);
+      margin-bottom: 20px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .description {
+      font-size: 16px;
+      color: var(--muted-foreground);
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .social-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .social-links a::before {
+      content: '↗';
+      font-size: 11px;
+      color: var(--primary);
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+    }
+
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stats-bar strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+
+    .stats-bar span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted-foreground);
+      margin-top: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      writing-mode: vertical-rl;
+      letter-spacing: 0.15em;
+      transition: color 0.2s;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    .scroll-cue:hover {
+      color: var(--primary);
+    }
+
+    @keyframes scrollBounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(8px);
+      }
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      padding-top: 64px;
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    #about p {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .education-block {
+      margin-top: 32px;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .education-block .label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .education-block strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .education-block p {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      margin-bottom: 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .skill-card:hover {
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.3), 0 20px 60px rgba(45, 212, 191, 0.08);
+      border-color: rgba(45, 212, 191, 0.2);
+    }
+
+    .skill-category {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .skill-card ul {
+      list-style: none;
+    }
+
+    .skill-card li {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-card li::before {
+      content: '';
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.6);
+      flex-shrink: 0;
+    }
+
+    /* ===== EXPERIENCE TIMELINE ===== */
+    #experience h2 {
+      margin-bottom: 48px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 220px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 200px;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+      opacity: 0.3;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 52px;
+      padding-left: 44px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-date {
+      position: absolute;
+      left: -220px;
+      width: 200px;
+      text-align: right;
+      padding-top: 4px;
+      padding-right: 20px;
+    }
+
+    .timeline-date p {
+      font-size: 13px;
+      color: var(--foreground);
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .timeline-date span {
+      font-size: 10px;
+      color: rgba(45, 212, 191, 0.7);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -4px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--background);
+      box-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+    }
+
+    .timeline-content {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .timeline-content:hover {
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.2), 0 20px 40px rgba(45, 212, 191, 0.05);
+      border-color: rgba(45, 212, 191, 0.15);
+    }
+
+    .timeline-content h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 2px;
+    }
+
+    .timeline-content .company {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .timeline-content ul {
+      list-style: none;
+    }
+
+    .timeline-content li {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+    }
+
+    .timeline-content li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.5);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ===== PROJECTS ===== */
+    #projects h2 {
+      margin-bottom: 8px;
+    }
+
+    #projects>p {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      margin-bottom: 40px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.3), 0 20px 60px rgba(45, 212, 191, 0.08);
+      border-color: rgba(45, 212, 191, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .project-card .img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 176px;
+      object-fit: cover;
+      transition: transform 0.7s;
+      display: block;
+    }
+
+    .project-card.featured img {
+      height: 224px;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .tags span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: rgba(45, 212, 191, 0.08);
+      color: var(--primary);
+      border-radius: 3px;
+      border: 1px solid rgba(45, 212, 191, 0.15);
+    }
+
+    .project-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 13px;
+      color: var(--muted-foreground);
+      line-height: 1.65;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .demo-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+      margin-top: auto;
+    }
+
+    .demo-link:hover {
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .testimonial-card:hover::before {
+      opacity: 1;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.3), 0 20px 60px rgba(45, 212, 191, 0.08);
+      border-color: rgba(45, 212, 191, 0.2);
+    }
+
+    .quote-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 64px;
+      line-height: 0.8;
+      color: var(--primary);
+      opacity: 0.4;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+
+    .testimonial-card>p {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      line-height: 1.8;
+      flex: 1;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonial-author strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--foreground);
+      margin-bottom: 2px;
+    }
+
+    .testimonial-author span {
+      font-size: 12px;
+      color: var(--primary);
+      opacity: 0.8;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact .section-label {
+      margin-bottom: 8px;
+    }
+
+    #contact h2 {
+      margin-bottom: 16px;
+    }
+
+    #contact>.two-col-grid>div>p {
+      font-size: 15px;
+      color: var(--muted-foreground);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--foreground);
+      transition: color 0.2s;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    .contact-links a:hover {
+      color: var(--primary);
+      border-color: rgba(45, 212, 191, 0.3);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary);
+      border-color: rgba(45, 212, 191, 0.5);
+    }
+
+    .contact-form-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 36px;
+    }
+
+    .contact-form-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      margin-bottom: 6px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      background: var(--secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 11px 16px;
+      font-size: 14px;
+      color: var(--foreground);
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(45, 212, 191, 0.5);
+      box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.06);
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      max-width: 1152px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    footer a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--primary);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0 24px;
+      }
+
+      header nav,
+      header .btn-primary {
+        display: none;
+      }
+
+      #mobile-menu-toggle {
+        display: block;
+      }
+
+      section {
+        padding: 72px 24px;
+      }
+
+      #home {
+        padding: 80px 24px 40px;
+      }
+
+      .two-col-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline::before {
+        left: 0;
+      }
+
+      .timeline-date {
+        position: static;
+        text-align: left;
+        width: auto;
+        padding-left: 20px;
+        padding-bottom: 8px;
+      }
+
+      .timeline-dot {
+        left: -4px;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 24px;
+      }
+
+      .scroll-cue {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-bar {
+        gap: 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <h1>Adrian Caamino</h1>
-        <p>Unity Game Developer</p>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am a dedicated Unity game developer with 6 years of combined professional and freelance experience,
-            specializing
-            in
-            both 2D and 3D game development. I have a proven track record of creating engaging, immersive experiences
-            for PC,
-            mobile, and WebGL platforms. Driven by a passion for innovation and continuous learning, I consistently
-            strive to
-            deliver high-quality, captivating games that leave a lasting impact.
-        </p>
-    </section>
+  <!-- Ambient Glows -->
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills">
-            <div class="skill"><strong>Unity Game Engine</strong><br>2D/3D, Physics, Animation, UI/UX</div>
-            <div class="skill"><strong>C# Programming</strong><br>Gameplay, Tools, Editor Scripting</div>
-            <div class="skill"><strong>Multiplayer Networking</strong><br>Unity NGO, Photon</div>
-            <div class="skill"><strong>AI Programming</strong><br>NavMesh, Behavior Trees, FSM</div>
-            <div class="skill"><strong>VR/AR Development</strong></div>
-            <div class="skill"><strong>Firebase Integration</strong></div>
-            <div class="skill"><strong>Animation Systems</strong><br>Animator, Mecanim, Blend Trees</div>
-            <div class="skill"><strong>UI/UX Implementation</strong><br>UGUI, Canvas System</div>
-            <div class="skill"><strong>Client-Server Architecture</strong></div>
-            <div class="skill"><strong>PlayFab SDK</strong></div>
-            <div class="skill"><strong>REST API Integration</strong></div>
-            <div class="skill"><strong>Cloud Save/Load</strong></div>
-            <div class="skill"><strong>Version Control</strong><br>Git, Plastic SCM</div>
-            <div class="skill"><strong>In-App Purchases & Ads</strong></div>
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <a href="#home" class="logo">AC<span style="color:var(--primary)">.</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="https://drive.google.com/file/d/1Iike4bA2xejxIjM9-_I9n4iLsYCbq3FK/view?usp=sharing" target="_blank"
+      class="btn-primary">Hire Me</a>
+    <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="#testimonials" onclick="closeMobileMenu()">Testimonials</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="https://drive.google.com/file/d/1Iike4bA2xejxIjM9-_I9n4iLsYCbq3FK/view?usp=sharing" target="_blank">Hire Me
+      ↗</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-grid-overlay"></div>
+
+    <div class="status-badge fade-up">
+      <span class="pulse-dot"></span>
+      <span>Available for Work</span>
+    </div>
+
+    <h1 class="fade-up fade-up-delay-1">
+      Adrian<br>
+      <span style="color:var(--primary)">Caamino</span><span style="color:var(--muted-foreground)">.</span>
+    </h1>
+
+    <p class="subtitle fade-up fade-up-delay-2">Senior Lead Unity Developer &amp; Game Engineer</p>
+
+    <p class="description fade-up fade-up-delay-2">
+      6 years of experience crafting immersive 2D/3D games for PC, mobile, and WebGL.
+      Passionate about bringing ideas to life through clean code and innovative gameplay.
+    </p>
+
+    <div class="cta-group fade-up fade-up-delay-3">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="https://drive.google.com/file/d/1Iike4bA2xejxIjM9-_I9n4iLsYCbq3FK/view?usp=sharing" target="_blank"
+        class="btn-outline">Download Resume</a>
+    </div>
+
+    <div class="social-links fade-up fade-up-delay-3">
+      <a href="https://github.com/HavenGameStudio" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/adrian-caamino-06b465233/" target="_blank">LinkedIn</a>
+    </div>
+
+    <div class="stats-bar fade-up fade-up-delay-4">
+      <div><strong>6+</strong><span>Years Experience</span></div>
+      <div><strong>7+</strong><span>Projects Shipped</span></div>
+      <div><strong>3</strong><span>Companies Served</span></div>
+      <div><strong>2D/3D</strong><span>Unity Specialist</span></div>
+    </div>
+
+    <a href="#about" class="scroll-cue">↓ Scroll</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <span class="section-label fade-up">About Me</span>
+    <div class="two-col-grid">
+      <div class="fade-up fade-up-delay-1">
+        <h2>Crafting Games<br><span style="color:var(--primary)">That Matter</span></h2>
+        <p>I'm a dedicated Unity game developer with 6 years of combined professional and freelance experience,
+          specializing in both 2D and 3D game development. I have a proven track record of creating engaging, immersive
+          experiences for PC, mobile, and WebGL platforms.</p>
+        <p>Driven by a passion for innovation and continuous learning, I consistently strive to deliver high-quality,
+          captivating games that leave a lasting impact — from gameplay systems to multiplayer networking to full
+          production pipelines.</p>
+        <p>Beyond development, I currently serve as Senior Lead Unity Developer at Buko Studio, overseeing technical
+          direction and mentoring junior developers.</p>
+        <div class="education-block">
+          <p class="label">Education</p>
+          <strong>BS Entertainment &amp; Multimedia Computing</strong>
+          <p>Major in Game Development · Bataan Peninsula State University · 2018–2022</p>
         </div>
-    </section>
-
-    <section id="experience">
-        <h2>Professional Experience</h2>
-        <div>
-            <strong>Senior Lead Unity Developer</strong> – Buko Studio (2025–Present)<br>
-            <ul>
-                <li>Led the development of a flagship Unity project for one of the Philippines' largest oil and energy
-                    companies, overseeing
-                    technical direction and delivery from planning to deployment.</li>
-                <li>Created reusable internal development tools and systems to support the studio's future projects,
-                    improving development
-                    speed and consistency for incoming teams.</li>
-                <li>Managed and broke down weekly development tasks for junior developers, wrote clean, well-documented,
-                    optimized and
-                    maintainable code, and provided hands-on mentorship to support team growth.</li>
-                <li>Managed and broke down weekly development tasks for junior developers, wrote clean, well-documented,
-                    optimized
-                    andAssisted with QA testing and technical reviews for both client and internal studio projects,
-                    helping ensure stability,
-                    performance, and production-ready quality across multiple titles.</li>
-            </ul>
-            <strong>Senior Unity Developer</strong> – Niterion (2023–2025)<br>
-            <ul>
-                <li>Led the design and development of high-performance games and interactive applications using Unity
-                    and C#.</li>
-                <li>Architected scalable systems, optimized gameplay mechanics, and ensured smooth cross-platform
-                    deployment across mobile
-                    and PC.</li>
-                <li>Collaborated closely with artists, designers, and clients to translate creative visions into
-                    polished, commercial-grade
-                    products.</li>
-                <li>Mentored junior developers, managed project timelines, and maintained clear communication with
-                    stakeholders to deliver
-                    results that meet both technical and business goals.</li>
-            </ul>
-            <strong>Junior Unity Developer</strong> – Niterion (2022–2023)<br>
-            <ul>
-                <li>Mentored junior developers, implemented complex systems, led code reviews, and managed project
-                    timelines.
-                </li>
-            </ul>
-            <strong>Junior Game Programmer</strong> – Max Games Ltd. (2020–2022)<br>
-            <ul>
-                <li>Implemented bug fixes and optimizations, improved game stability (reduced crash rates by 5%),
-                    enhanced
-                    player retention by 15%, and contributed to code reviews and documentation.</li>
-            </ul>
+      </div>
+      <div class="skills-grid fade-up fade-up-delay-2">
+        <div class="skill-card">
+          <p class="skill-category">Game Engine</p>
+          <ul>
+            <li>Unity 2D/3D</li>
+            <li>Physics</li>
+            <li>Animation</li>
+            <li>UI/UX</li>
+            <li>VR/AR Development</li>
+          </ul>
         </div>
-        <div style="margin-top:20px;">
-            <strong>Education:</strong><br>
-            BS Entertainment and Multimedia Computing, Major in Game Development<br>
-            Bataan Peninsula State University (2018–2022)
+        <div class="skill-card">
+          <p class="skill-category">Programming</p>
+          <ul>
+            <li>C# Gameplay</li>
+            <li>Editor Scripting</li>
+            <li>Tools Dev</li>
+            <li>REST API Integration</li>
+          </ul>
         </div>
-    </section>
-
-    <section id="projects">
-        <h2>Non Confidential Projects</h2>
-        <div class="projects">
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Iquiz%20Image.jpg?raw=true"
-                    alt="IQuiz">
-                <strong>IQuiz</strong>
-                <p>
-                    The ultimate knowledge-enhancing experience! Four exciting game modes challenge and expand your
-                    understanding
-                    across
-                    various topics. Compete, learn, and dominate the leaderboard.
-                </p>
-            </div>
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Bubbly%20Typing.jpg?raw=true"
-                    alt="Bubbly Typing">
-                <strong>Bubbly Typing</strong>
-                <p>
-                    Enhance your typing skills with fun and interactive gameplay across four dynamic modes. Perfect for
-                    typists of
-                    all
-                    levels, turning learning into a bubbly adventure.
-                </p>
-            </div>
-
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Digifight.jpg?raw=true"
-                    alt="Digifight">
-                <strong>Digifight</strong>
-                <p>
-                    The ultimate cockfighting game powered by Web3. Raise, train, and battle unique roosters in intense
-                    online
-                    matches.
-                    Strategic gameplay and Web3 integration for a unique experience.
-                </p>
-            </div>
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Rags%20to%20Riches.jpg?raw=true"
-                    alt="Rags to Riches">
-                <strong>Rags to Riches</strong>
-                <p>
-                    An immersive 3D simulation game where players journey to financial success through strategic
-                    investments, job
-                    applications, and life management.
-                </p>
-            </div>
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Cards%20and%20magic.jpg?raw=true"
-                    alt="Cards and Magic">
-                <strong>Cards and Magic</strong>
-                <p>
-                    A multiplayer, turn-based strategy game inspired by titles like Axie. Players use a deck of cards to
-                    attack,
-                    defend, and strategize, with each turn granting 2 mana to spend on card actions. Features include
-                    card
-                    shuffling, account authentication and creation, a shop and inventory system for cards, in-app
-                    purchases, and
-                    both multiplayer and vs AI modes. Designed for competitive play and deep strategic choices.
-                </p>
-            </div>
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/The%20horde.jpg?raw=true"
-                    alt="The Horde">
-                <strong>The Horde</strong>
-                <p>
-                    A 2D top-down pixel art defense game where you must protect your keep from relentless waves of
-                    enemies. As waves
-                    progress, enemy numbers and types increase, introducing tougher foes. Spawn allies like warriors,
-                    archers, and
-                    knights—each unlocked at higher waves and requiring gold to deploy. Purchase gold mines to generate
-                    income, and
-                    level up your allies to strengthen your defenses. Strategic resource management and ally placement
-                    are key to
-                    surviving the horde!
-                </p>
-                <a class="play-btn"
-                    href="https://play.unity.com/en/games/0a425ba0-9f35-407a-a486-73ff1d3dda06/last-keep-v011"
-                    target="_blank">
-                    ▶ Play WebGL Demo (Strictly for Desktop Only!)
-                </a>
-            </div>
-
-            <div class="project">
-                <img src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Emperor's%20Gambit.jpg?raw=true"
-                    alt="Emperor's Gambit: The Fog of War">
-
-                <strong>Emperor's Gambit: The Fog of War</strong>
-
-                <p>
-                    A strategic, hidden-information board game for mobile. Outsmart your opponent by eliminating their
-                    Emperor, escorting your own Emperor to victory, or running down their timer.
-                </p>
-
-                <a class="play-btn"
-                    href="https://havengamestudio.github.io/Emperor's%20gambit%20tutorial/emperorsgambit.html"
-                    target="_blank">
-                    ▶ Play WebGL Demo (Strictly for Mobiles Only!)
-                </a>
-            </div>
-
+        <div class="skill-card">
+          <p class="skill-category">Networking</p>
+          <ul>
+            <li>Unity NGO</li>
+            <li>Photon</li>
+            <li>Client-Server Architecture</li>
+            <li>Cloud Save/Load</li>
+          </ul>
         </div>
-    </section>
-
-    <section id="testimonials">
-        <h2>Testimonials</h2>
-        <div class="testimonial-carousel">
-            <button class="carousel-btn left" onclick="prevTestimonial()">&#8592;</button>
-            <div class="testimonial-list">
-                <div class="testimonial active">
-                    "I had the pleasure of working with Adrian on our latest game project, and the experience was
-                    nothing
-                    short of fantastic. Their expertise in both 2D and 3D Unity development was evident from the start,
-                    and
-                    they brought a high level of creativity and professionalism to the table. They consistently met
-                    deadlines and exceeded our expectations with their innovative solutions and attention to detail. I
-                    highly recommend Adrian for any game development project and look forward to collaborating with them
-                    again in the future."
-                    <br><br>
-                    <strong>– Christian Mar Llarina, Game Designer, CPL Game Studio</strong>
-                </div>
-                <div class="testimonial">
-                    "Adrian's technical skills and creative vision elevated our project beyond expectations. He is a
-                    reliable and talented developer who always delivers on time."
-                    <br><br>
-                    <strong>– Dominic Lim, CEO, <a href="https://niteriondesigns.com/team/" target="_blank"
-                            style="color:#66fcf1; text-decoration:underline;">Niterion Designs</a>.</strong>
-
-                </div>
-                <!-- Add more testimonials as needed -->
-            </div>
-            <button class="carousel-btn right" onclick="nextTestimonial()">&#8594;</button>
+        <div class="skill-card">
+          <p class="skill-category">AI &amp; Systems</p>
+          <ul>
+            <li>NavMesh</li>
+            <li>Behavior Trees</li>
+            <li>FSM</li>
+            <li>Animation Systems</li>
+            <li>Mecanim</li>
+          </ul>
         </div>
-    </section>
-
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <div>Email: <a class="contact-link" href="mailto:adriancaamino.ac@gmail.com">adriancaamino.ac@gmail.com</a>
-            </div>
-            <div>Phone: <a class="contact-link" href="tel:+639165562182">+63 916 556 2182</a></div>
+        <div class="skill-card">
+          <p class="skill-category">Platform &amp; Tools</p>
+          <ul>
+            <li>Firebase</li>
+            <li>PlayFab SDK</li>
+            <li>In-App Purchases</li>
+            <li>Git</li>
+            <li>Plastic SCM</li>
+          </ul>
         </div>
-        <div class="contact">
-            <a href="https://www.linkedin.com/in/adrian-caamino-06b465233/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/HavenGameStudio" target="_blank">GitHub</a>
-            <a href="https://www.facebook.com/profile.php?id=61573022082103" target="_blank">Facebook</a>
-            <a href="https://drive.google.com/file/d/1Iike4bA2xejxIjM9-_I9n4iLsYCbq3FK/view?usp=sharing"
-                target="_blank">Resume</a>
+        <div class="skill-card">
+          <p class="skill-category">Business</p>
+          <ul>
+            <li>Team Leadership</li>
+            <li>Code Reviews</li>
+            <li>Project Management</li>
+            <li>Digital Marketing</li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const testimonialList = document.querySelector('.testimonial-list');
-        const testimonialCount = testimonials.length;
-        let testimonialInterval = setInterval(nextTestimonial, 5000);
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <span class="section-label fade-up">Career</span>
+    <h2 class="fade-up fade-up-delay-1">Experience</h2>
+    <div class="timeline">
 
-        function showTestimonial(index) {
-            testimonials.forEach((t, i) => {
-                t.classList.toggle('active', i === index);
-            });
-            // Dynamically set the container height to the active testimonial's height
-            setTimeout(() => {
-                const activeTestimonial = testimonials[index];
-                testimonialList.style.height = activeTestimonial.offsetHeight + "px";
-            }, 10); // Timeout ensures DOM update
+      <div class="timeline-item fade-up">
+        <div class="timeline-date">
+          <p>2025 – Present</p>
+          <span>Full-time</span>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Senior Lead Unity Developer</h3>
+          <p class="company">Buko Studio</p>
+          <ul>
+            <li>Led the development of a flagship Unity project for one of the Philippines' largest oil and energy
+              companies, overseeing technical direction and delivery from planning to deployment.</li>
+            <li>Created reusable internal development tools and systems to support the studio's future projects,
+              improving development speed and consistency for incoming teams.</li>
+            <li>Managed and broke down weekly development tasks for junior developers, wrote clean, well-documented,
+              optimized and maintainable code, and provided hands-on mentorship.</li>
+            <li>Assisted with QA testing and technical reviews for both client and internal studio projects, helping
+              ensure stability, performance, and production-ready quality.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up fade-up-delay-1">
+        <div class="timeline-date">
+          <p>2023 – 2025</p>
+          <span>Full-time</span>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Senior Unity Developer</h3>
+          <p class="company">Niterion</p>
+          <ul>
+            <li>Led the design and development of high-performance games and interactive applications using Unity and
+              C#.</li>
+            <li>Architected scalable systems, optimized gameplay mechanics, and ensured smooth cross-platform deployment
+              across mobile and PC.</li>
+            <li>Collaborated closely with artists, designers, and clients to translate creative visions into polished,
+              commercial-grade products.</li>
+            <li>Mentored junior developers, managed project timelines, and maintained clear communication with
+              stakeholders.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up fade-up-delay-2">
+        <div class="timeline-date">
+          <p>2022 – 2023</p>
+          <span>Full-time</span>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Senior Developer</h3>
+          <p class="company">Niterion</p>
+          <ul>
+            <li>Mentored junior developers and led code reviews.</li>
+            <li>Implemented complex game systems and architecture.</li>
+            <li>Managed project timelines and client deliverables.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up fade-up-delay-3">
+        <div class="timeline-date">
+          <p>2020 – 2022</p>
+          <span>Full-time</span>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Junior Game Programmer</h3>
+          <p class="company">Max Games Ltd.</p>
+          <ul>
+            <li>Implemented bug fixes and performance optimizations.</li>
+            <li>Reduced game crash rates by 5% through stability improvements.</li>
+            <li>Enhanced player retention by 15% via gameplay feature work.</li>
+            <li>Contributed to code reviews and technical documentation.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <span class="section-label fade-up">Portfolio</span>
+    <h2 class="fade-up fade-up-delay-1">Selected Projects</h2>
+    <p class="fade-up fade-up-delay-1">A selection of games and interactive experiences shipped across multiple
+      platforms.</p>
+
+    <div class="featured-grid fade-up fade-up-delay-2">
+      <div class="project-card featured">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Iquiz%20Image.jpg?raw=true"
+            alt="IQuiz" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags"><span>Unity</span><span>Mobile</span><span>Educational</span></div>
+          <h3>IQuiz</h3>
+          <p>The ultimate knowledge-enhancing experience. Four exciting game modes challenge and expand understanding
+            across various topics. Compete, learn, and dominate the leaderboard.</p>
+        </div>
+      </div>
+      <div class="project-card featured">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Cards%20and%20magic.jpg?raw=true"
+            alt="Cards and Magic" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags">
+            <span>Unity</span><span>Multiplayer</span><span>Strategy</span><span>Photon</span><span>IAP</span>
+          </div>
+          <h3>Cards and Magic</h3>
+          <p>A multiplayer turn-based strategy game inspired by Axie. Players use cards to attack, defend, and
+            strategize. Features card shuffling, account system, in-app purchases, shop, inventory, and vs-AI mode.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Digifight.jpg?raw=true"
+            alt="Digifight" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags"><span>Unity</span><span>Web3</span><span>Multiplayer</span><span>Mobile</span></div>
+          <h3>Digifight</h3>
+          <p>The ultimate cockfighting game powered by Web3. Raise, train, and battle unique roosters in intense online
+            matches with strategic gameplay and blockchain integration.</p>
+        </div>
+      </div>
+      <div class="project-card fade-up fade-up-delay-1">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Rags%20to%20Riches.jpg?raw=true"
+            alt="Rags to Riches" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags"><span>Unity</span><span>3D</span><span>Simulation</span><span>PC</span></div>
+          <h3>Rags to Riches</h3>
+          <p>An immersive 3D simulation game where players journey to financial success through strategic investments,
+            job applications, and life management decisions.</p>
+        </div>
+      </div>
+      <div class="project-card fade-up fade-up-delay-2">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/The%20horde.jpg?raw=true"
+            alt="The Horde" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags"><span>Unity</span><span>2D</span><span>Pixel Art</span><span>Tower Defense</span></div>
+          <h3>The Horde</h3>
+          <p>A 2D top-down pixel art defense game. Protect your keep from relentless enemy waves, spawn allies, manage
+            gold mines, and level up your defenses.</p>
+          <a href="https://play.unity.com/en/games/0a425ba0-9f35-407a-a486-73ff1d3dda06/last-keep-v011" target="_blank"
+            class="demo-link">▶ Play Demo →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up fade-up-delay-1">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Emperor's%20Gambit.jpg?raw=true"
+            alt="Emperor's Gambit" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags"><span>Unity</span><span>Mobile</span><span>Board Game</span><span>Strategy</span></div>
+          <h3>Emperor's Gambit</h3>
+          <p>A strategic hidden-information board game for mobile. Outsmart your opponent by eliminating their Emperor,
+            escorting yours to victory, or running down their timer.</p>
+          <a href="https://havengamestudio.github.io/Emperor's%20gambit%20tutorial/emperorsgambit.html" target="_blank"
+            class="demo-link">▶ Play Demo →</a>
+        </div>
+      </div>
+      <div class="project-card fade-up fade-up-delay-2">
+        <div class="img-wrap">
+          <img
+            src="https://github.com/HavenGameStudio/HavenGameStudio.github.io/blob/Master/images/Bubbly%20Typing.jpg?raw=true"
+            alt="Bubbly Typing" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tags"><span>Unity</span><span>Mobile</span><span>Educational</span><span>Mini-Game</span></div>
+          <h3>Bubbly Typing</h3>
+          <p>Enhance typing skills with fun and interactive gameplay across four dynamic modes. Perfect for typists of
+            all levels, turning learning into a bubbly adventure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <span class="section-label fade-up">Testimonials</span>
+    <h2 class="fade-up fade-up-delay-1">What People Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up fade-up-delay-1">
+        <div class="quote-mark">"</div>
+        <p>I had the pleasure of working with Adrian on our latest game project, and the experience was nothing short of
+          fantastic. Their expertise in both 2D and 3D Unity development was evident from the start, and they brought a
+          high level of creativity and professionalism to the table. They consistently met deadlines and exceeded our
+          expectations with their innovative solutions and attention to detail. I highly recommend Adrian for any game
+          development project and look forward to collaborating with them again in the future.</p>
+        <div class="testimonial-author">
+          <strong>Christian Mar Llarina</strong>
+          <span>Game Designer, CPL Game Studio</span>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up fade-up-delay-2">
+        <div class="quote-mark">"</div>
+        <p>Adrian's technical skills and creative vision elevated our project beyond expectations. He is a reliable and
+          talented developer who always delivers on time.</p>
+        <div class="testimonial-author">
+          <strong>Dominic Lim</strong>
+          <span>CEO, Niterion Designs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="two-col-grid">
+      <div class="fade-up">
+        <span class="section-label">Get in Touch</span>
+        <h2>Let's Build<br><span style="color:var(--primary)">Something Great</span></h2>
+        <p>I'm open to freelance projects, full-time opportunities, and collaborations.</p>
+        <div class="contact-links">
+          <a href="mailto:adriancaamino.ac@gmail.com">
+            <span>📧</span> adriancaamino.ac@gmail.com
+          </a>
+          <a href="tel:+639165562182">
+            <span>📞</span> +63 916 556 2182
+          </a>
+        </div>
+        <div class="social-icons">
+          <a href="https://github.com/HavenGameStudio" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/adrian-caamino-06b465233/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61573022082103" target="_blank">Facebook</a>
+        </div>
+      </div>
+      <div class="contact-form-card fade-up fade-up-delay-2">
+        <h3>Send a Message</h3>
+        <div class="form-row">
+          <div><label>Name</label><input type="text" placeholder="Your name"></div>
+          <div><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        </div>
+        <div><label>Subject</label><input type="text" placeholder="Project inquiry, collaboration..."></div>
+        <div><label>Message</label><textarea rows="5" placeholder="Tell me about your project..."></textarea></div>
+        <a href="mailto:adriancaamino.ac@gmail.com" class="btn-primary btn-full">Send Message</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#home" class="logo">AC<span style="color:var(--primary)">.</span></a>
+    <p>© 2025 Adrian Caamino. All rights reserved.</p>
+    <a href="https://drive.google.com/file/d/1Iike4bA2xejxIjM9-_I9n4iLsYCbq3FK/view?usp=sharing" target="_blank">↗ View
+      Resume</a>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Mobile menu
+    function toggleMobileMenu() {
+      document.getElementById('mobile-nav').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobile-nav').classList.remove('open');
+    }
+
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonialCount;
-            showTestimonial(currentTestimonial);
-            resetInterval();
-        }
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        function prevTestimonial() {
-            currentTestimonial = (currentTestimonial - 1 + testimonialCount) % testimonialCount;
-            showTestimonial(currentTestimonial);
-            resetInterval();
-        }
-
-        function resetInterval() {
-            clearInterval(testimonialInterval);
-            testimonialInterval = setInterval(nextTestimonial, 5000);
-        }
-
-        // Initialize
-        window.addEventListener('DOMContentLoaded', () => {
-            showTestimonial(currentTestimonial);
-        });
-        window.addEventListener('resize', () => {
-            showTestimonial(currentTestimonial);
-        });
-    </script>
-
-
-
+    // Hero elements animate on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('#home .fade-up').forEach(el => {
+        setTimeout(() => el.classList.add('visible'), 100);
+      });
+    });
+  </script>
 </body>
 
 </html>
