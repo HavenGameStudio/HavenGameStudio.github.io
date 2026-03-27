@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haven Game Studio | Forging Worlds Beyond Imagination</title>
+  <link rel="icon" href="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/f68fb0275_generated_38943c96.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PARTICLES
+════════════════════════════════════════════ -->
+<div id="particles"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#home">
+    <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/7e1d2bd91_generated_1210999f.png" alt="Haven Logo" />
+    <div class="nav-logo-text">
+      <span class="logo-name">HAVEN</span>
+      <span class="logo-sub">Game Studio</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home"    onclick="closeMobile()">Home</a>
+  <a href="#about"   onclick="closeMobile()">About</a>
+  <a href="#games"   onclick="closeMobile()">Games</a>
+  <a href="#team"    onclick="closeMobile()">Team</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <span class="hero-label">Forging Worlds Beyond Imagination</span>
+    <h1 class="hero-title">HAVEN</h1>
+    <div class="gold-divider"></div>
+    <span class="hero-studio-label">Game Studio</span>
+    <p class="hero-subtitle">
+      An independent studio crafting immersive experiences at the intersection of tactical gameplay and rich dark fantasy worlds.
+    </p>
+    <div class="hero-ctas">
+      <a href="#games" class="btn-primary">Explore Our Games</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-chevron" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT SECTION
+════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="about-header reveal">
+      <span class="section-label">The Studio</span>
+      <h2 class="section-heading">ABOUT <span>HAVEN</span></h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="about-cards">
+
+      <!-- Card 1 -->
+      <div class="about-card bracket-card reveal">
+        <div class="card-icon">
+          <!-- Shield icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <p class="card-title">Who We Are</p>
+        <p>Haven Game Studio is a passionate game development studio dedicated to crafting immersive experiences that blend tactical gameplay with rich fantasy worlds. We believe every game should be an adventure worth remembering — a world worth exploring, and a story worth telling.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="about-card bracket-card reveal" style="transition-delay:0.15s">
+        <div class="card-icon">
+          <!-- Eye icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <p class="card-title">Our Vision</p>
+        <p>To become a globally recognized name in the gaming industry, known for creating groundbreaking titles that redefine what players expect from interactive entertainment. We envision a future where every gamer has experienced a Haven-crafted world.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="about-card bracket-card reveal" style="transition-delay:0.3s">
+        <div class="card-icon">
+          <!-- Target icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <p class="card-title">Our Mission</p>
+        <p>To deliver exceptional gaming experiences by combining cutting-edge technology with masterful storytelling and innovative game design. We are committed to pushing creative boundaries while building a community of passionate players who share our love for gaming.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GAMES SECTION
+════════════════════════════════════════════ -->
+<section id="games">
+  <div class="section-wrap">
+    <div class="games-header reveal">
+      <span class="section-label">Our Portfolio</span>
+      <h2 class="section-heading">OUR <span>GAMES</span></h2>
+      <div class="gold-divider"></div>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:.5rem;">From shipped titles to worlds in the making — every project a testament to craft.</p>
+    </div>
+
+    <div class="games-grid">
+
+      <!-- SHADOWBANE: RECKONING -->
+      <div class="game-card bracket-card reveal">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/d8f6f50be_generated_cb09c43d.png" alt="Shadowbane: Reckoning" loading="lazy" />
+          <span class="game-status status-dev">In Development</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Action RPG</p>
+          <h3 class="game-title">Shadowbane: Reckoning</h3>
+          <p class="game-desc">A dark, immersive action RPG set in an open fantasy world where shadows consume entire kingdoms. Forge your destiny through brutal combat and uncover the truth behind the Reckoning.</p>
+          <div class="game-tags">
+            <span class="tag">Open World</span>
+            <span class="tag">Dark Fantasy</span>
+            <span class="tag">Single Player</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARCANE VANGUARD -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.1s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/1f41b507c_generated_5bfe1844.png" alt="Arcane Vanguard" loading="lazy" />
+          <span class="game-status status-concept">Concept Phase</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Tactical Shooter</p>
+          <h3 class="game-title">Arcane Vanguard</h3>
+          <p class="game-desc">A fantasy-infused tactical shooter where arcane abilities meet military precision. Choose your vanguard, master your arsenal of spells and steel, and dominate the battlefield.</p>
+          <div class="game-tags">
+            <span class="tag">Multiplayer</span>
+            <span class="tag">Tactical</span>
+            <span class="tag">Fantasy Shooter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ECHOES OF THE ARENA -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.2s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/1e8e52d7e_generated_59b2438d.png" alt="Echoes of the Arena" loading="lazy" />
+          <span class="game-status status-concept">Early Concept</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Competitive Arena</p>
+          <h3 class="game-title">Echoes of the Arena</h3>
+          <p class="game-desc">An intense competitive arena battler where warriors chosen by the gods fight for eternal glory. Every echo of clash, every battle cry — immortalized in the arena forever.</p>
+          <div class="game-tags">
+            <span class="tag">PvP</span>
+            <span class="tag">Arena Combat</span>
+            <span class="tag">Competitive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- IQUIZ -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.05s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/bc8b81fc2_generated_image.png" alt="iQuiz" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Mobile · Educational</p>
+          <h3 class="game-title">iQuiz</h3>
+          <p class="game-desc">An engaging mobile educational quiz game designed to make learning fun and accessible. Sharp questions, fast pace, and rewards that keep players coming back.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">Educational</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS AND MAGIC -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.15s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/fc0a661f3_generated_image.png" alt="Cards and Magic" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Mobile · Strategy</p>
+          <h3 class="game-title">Cards and Magic</h3>
+          <p class="game-desc">A mobile multiplayer card strategy game powered by real-time Photon networking. Build decks, unleash powerful spells, and outwit opponents across the globe.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">Multiplayer</span>
+            <span class="tag">Photon</span>
+            <span class="tag">IAP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIGIFIGHT -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.25s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/deaa7d35a_generated_image.png" alt="DigiFight" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Mobile · Web3</p>
+          <h3 class="game-title">DigiFight</h3>
+          <p class="game-desc">A Web3-enabled mobile fighting game where ownership is real and battles are legendary. Collect, train, and fight with blockchain-backed digital warriors.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">Web3</span>
+            <span class="tag">Multiplayer</span>
+            <span class="tag">Mobile</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RAGS TO RICHES -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.1s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/43c984372_generated_image.png" alt="Rags to Riches" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">PC · Simulation</p>
+          <h3 class="game-title">Rags to Riches</h3>
+          <p class="game-desc">A 3D PC life simulation game where every decision shapes your destiny. Start from nothing, build an empire, and experience the full spectrum of fortune and failure.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">3D</span>
+            <span class="tag">Simulation</span>
+            <span class="tag">PC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE HORDE -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.2s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/372dc678a_generated_image.png" alt="The Horde" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">PC · Tower Defense</p>
+          <h3 class="game-title">The Horde</h3>
+          <p class="game-desc">A 2D pixel art tower defense where waves of relentless enemies storm your last keep. Strategize, upgrade, and hold the line against the ever-growing horde.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">2D</span>
+            <span class="tag">Pixel Art</span>
+            <span class="tag">Tower Defense</span>
+          </div>
+          <a href="https://play.unity.com/en/games/0a425ba0-9f35-407a-a486-73ff1d3dda06/last-keep-v011" target="_blank" rel="noopener" class="btn-demo">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Play Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- EMPEROR'S GAMBIT -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.3s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/d3d561e52_generated_image.png" alt="Emperor's Gambit" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Mobile · Board Game</p>
+          <h3 class="game-title">Emperor's Gambit</h3>
+          <p class="game-desc">A mobile strategy board game of royal conquest and calculated risk. Deploy your forces, outmaneuver rivals, and claim the throne through cunning and patience.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">Board Game</span>
+            <span class="tag">Strategy</span>
+          </div>
+          <a href="https://havengamestudio.github.io/Emperor's%20gambit%20tutorial/emperorsgambit.html" target="_blank" rel="noopener" class="btn-demo">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Play Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- BUBBLY TYPING -->
+      <div class="game-card bracket-card reveal" style="transition-delay:.15s">
+        <div class="game-thumb">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/78c0ef43f_generated_image.png" alt="Bubbly Typing" loading="lazy" />
+          <span class="game-status status-shipped">Shipped</span>
+        </div>
+        <div class="game-body">
+          <p class="game-genre">Mobile · Educational</p>
+          <h3 class="game-title">Bubbly Typing</h3>
+          <p class="game-desc">A playful and addictive mobile typing mini-game where popping bubbles teaches real keyboard speed and accuracy. Perfect for learners of all ages.</p>
+          <div class="game-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">Educational</span>
+            <span class="tag">Mini-Game</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TEAM SECTION
+════════════════════════════════════════════ -->
+<section id="team">
+  <div class="section-wrap">
+    <div class="team-header reveal">
+      <span class="section-label">Behind the Studio</span>
+      <h2 class="section-heading">THE <span>TEAM</span></h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <div class="team-card-wrap">
+      <div class="team-card bracket-card reveal">
+        <!-- Gamepad icon -->
+        <div class="card-icon" style="margin:0 auto 1.5rem;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;">
+            <line x1="6" y1="12" x2="10" y2="12"></line>
+            <line x1="8" y1="10" x2="8" y2="14"></line>
+            <line x1="15" y1="13" x2="15" y2="13" stroke-linecap="round" stroke-width="3"></line>
+            <line x1="18" y1="11" x2="18" y2="11" stroke-linecap="round" stroke-width="3"></line>
+            <rect x="2" y="8" width="20" height="10" rx="1"></rect>
+          </svg>
+        </div>
+
+        <span class="team-role">Founder &amp; Lead Developer</span>
+        <h3 class="team-heading">One Vision.<br/>One Mission.</h3>
+
+        <p>Haven Game Studio is driven by a solo developer with an unrelenting passion for creating worlds that captivate and inspire. Every line of code, every design decision, and every creative choice is made with the singular goal of delivering extraordinary gaming experiences.</p>
+
+        <div class="skill-pills">
+          <span class="skill-pill">Game Development</span>
+          <span class="skill-pill">Game Design</span>
+          <span class="skill-pill">Creative Direction</span>
+        </div>
+      </div>
+
+      <p class="team-join">
+        Interested in joining Haven Game Studio?
+        <a href="#contact">Reach out to us</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT SECTION
+════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="contact-header reveal">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="section-heading">GET IN <span>TOUCH</span></h2>
+      <div class="gold-divider"></div>
+      <p>Have a collaboration idea, a question, or just want to talk games? We'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-form-wrap reveal">
+      <form class="contact-form" id="contactForm" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="from_name">Name</label>
+            <input type="text" id="from_name" name="from_name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="reply_to">Email</label>
+            <input type="email" id="reply_to" name="reply_to" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="What's this about?" required />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn" style="width:100%;text-align:center;border:none;">
+          Send Message
+        </button>
+        <div class="form-status" id="formStatus"></div>
+      </form>
+
+      <p class="contact-direct">
+        Or email us directly at&nbsp;
+        <a href="mailto:havengamestudio@outlook.com">havengamestudio@outlook.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a class="nav-logo" href="#home">
+          <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/7e1d2bd91_generated_1210999f.png" alt="Haven Logo" />
+          <div class="nav-logo-text">
+            <span class="logo-name">HAVEN</span>
+            <span class="logo-sub">Game Studio</span>
+          </div>
+        </a>
+        <p>Crafting immersive gaming experiences at the intersection of tactical gameplay and dark fantasy worlds.</p>
+      </div>
+
+      <!-- Quick Nav -->
+      <div>
+        <span class="footer-col-title">Navigation</span>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#games">Games</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <span class="footer-col-title">Contact</span>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:.5rem;">For inquiries and collaborations:</p>
+        <a href="mailto:havengamestudio@outlook.com" class="footer-contact-email">havengamestudio@outlook.com</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2025 Haven Game Studio. All rights reserved.</span>
+    <span class="passion">Crafted with passion and purpose.</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+/* ── Particles ── */
+(function() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      bottom: -5px;
+      width: ${Math.random() < 0.5 ? 1 : 2}px;
+      height: ${Math.random() < 0.5 ? 1 : 2}px;
+      animation-duration: ${8 + Math.random() * 12}s;
+      animation-delay: ${Math.random() * 15}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ── Navbar scroll ── */
+(function() {
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+
+/* ── Hamburger ── */
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+}
+
+/* ── Scroll Reveal ── */
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+})();
+
+/* ── EmailJS & Contact Form ── */
+(function() {
+  // ⚠️  REPLACE these placeholders with your actual EmailJS credentials
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  const form      = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const status    = document.getElementById('formStatus');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Basic validation
+    const name  = form.from_name.value.trim();
+    const email = form.reply_to.value.trim();
+    const subj  = form.subject.value.trim();
+    const msg   = form.message.value.trim();
+
+    if (!name || !email || !subj || !msg) {
+      showStatus('Please fill in all fields.', 'error');
+      return;
+    }
+
+    // Loading state
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+    status.className = 'form-status';
+    status.style.display = 'none';
+
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+      .then(() => {
+        showStatus('Message sent! We\'ll get back to you soon.', 'success');
+        form.reset();
+      })
+      .catch(() => {
+        showStatus('Something went wrong. Please email us directly.', 'error');
+      })
+      .finally(() => {
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+      });
+  });
+
+  function showStatus(msg, type) {
+    status.textContent = msg;
+    status.className = 'form-status ' + type;
+  }
+})();
+</script>
+
+</body>
+</html>
