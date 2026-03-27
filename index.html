@@ -416,20 +416,29 @@
     .scroll-cue {
       position: absolute;
       bottom: 32px;
-      right: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      transition: color var(--transition);
-      z-index: 3;
-      text-decoration: none;
+      right: 48px;
+      left: 1000px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      writing-mode: horizontal-rl;
+      letter-spacing: 0.15em;
+      transition: color 0.2s;
+      animation: scrollBounce 2s ease-in-out infinite;
     }
 
-    .scroll-arrow {
-      animation: bounce 2s ease-in-out infinite;
+    .scroll-word {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      left: 975px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      writing-mode: horizontal-rl;
+      letter-spacing: 0.15em;
+      transition: color 0.2s;
+
     }
 
     .scroll-cue:hover {
@@ -1168,12 +1177,8 @@
       <div><strong>2D/3D</strong><span>Unity Specialist</span></div>
     </div>
 
-    <div class="scroll-indicator">
-      <span>Scroll</span>
-      <svg class="scroll-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2">
-        <polyline points="6 9 12 15 18 9" />
-      </svg>
+    <a href="#about" class="scroll-word">Scroll</a>
+    <a href="#about" class="scroll-cue">↓</a>
   </section>
 
   <!-- ABOUT -->
