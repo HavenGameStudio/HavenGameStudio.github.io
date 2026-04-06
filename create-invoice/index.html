@@ -471,7 +471,7 @@
       </div>
       <div class="input-card">
         <div class="ic-label">Rate / Day</div>
-        <div class="ic-value" id="inp-rate">0</div>
+        <div class="ic-value" id="rate-val">₱0.00</div>
         <div class="ic-hint">fixed rate</div>
       </div>
       <div class="input-card">
@@ -500,8 +500,8 @@
       <tbody>
         <tr>
           <td id="tb-days">0</td>
-          <td>Paid Days — Senior Developer (Monthly Salary)</td>
-          <td style="text-align:right">₱4,090.91</td>
+          <td>Paid Days — Senior Developer</td>
+          <td style="text-align:right" id="tb-rate">₱0.00</td>
           <td style="text-align:right" id="tb-subtotal">₱0.00</td>
         </tr>
         <tr>
@@ -514,7 +514,7 @@
           <td>—</td>
           <td>Withholding</td>
           <td style="text-align:right" id="tb-taxrate">0%</td>
-          <td style="text-align:right" id="tb-tax">₱0.00</td>
+          <td style="text-align:right" id="tb-tax">— ₱0.00</td>
         </tr>
       </tbody>
     </table>
@@ -703,7 +703,7 @@
 
     function calculate() {
       var days = parseFloat(document.getElementById('inp-days').value) || 0;
-      var rate = parseFloat(document.getElementById('inp-rate').value) || 4090.91;
+      var rate = parseFloat(document.getElementById('inp-rate').value) || 0;
       var deduct = parseFloat(document.getElementById('inp-deduct').value) || 0;
       var taxPct = parseFloat(document.getElementById('inp-tax').value) || 0;
 
@@ -711,19 +711,21 @@
       var taxAmt = subtotal * (taxPct / 100);
       var total = subtotal - deduct - taxAmt;
 
+      document.getElementById('rate-val').textContent = fmt(rate);
       document.getElementById('days-val').textContent = days;
       document.getElementById('deduct-val').textContent = fmt(deduct);
       document.getElementById('tax-val').textContent = taxPct + '%';
 
+      document.getElementById('tb-rate').textContent = fmt(rate);
       document.getElementById('tb-days').textContent = days;
       document.getElementById('tb-subtotal').textContent = fmt(subtotal);
       document.getElementById('tb-deduct').textContent = '— ' + fmt(deduct);
       document.getElementById('tb-taxrate').textContent = taxPct + '%';
-      document.getElementById('tb-tax').textContent = fmt(taxAmt);
+      document.getElementById('tb-tax').textContent = '— ' + fmt(taxAmt);
 
       document.getElementById('tot-sub').textContent = fmt(subtotal);
       document.getElementById('tot-deduct').textContent = '\u2014 ' + fmt(deduct);
-      document.getElementById('tot-tax').textContent = fmt(taxAmt);
+      document.getElementById('tot-tax').textContent = '\u2014 ' + fmt(taxAmt);
       document.getElementById('tot-total').textContent = fmt(total);
     }
 
