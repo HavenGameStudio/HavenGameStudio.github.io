@@ -597,30 +597,40 @@ Payment Type: Monthly Salary</div>
 </script>
 
 <script>
-  const fmt = (n) => '₱' + n.toLocaleString('en-PH', {minimumFractionDigits:2, maximumFractionDigits:2});
+  function fmt(n) {
+    return '\u20b1' + n.toLocaleString('en-PH', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
 
   function calculate() {
-    const days   = parseFloat(document.getElementById('inp-days').value)   || 0;
-    const rate   = parseFloat(document.getElementById('inp-rate').value)   || 4090.91;
-    const deduct = parseFloat(document.getElementById('inp-deduct').value) || 0;
-    const taxPct = parseFloat(document.getElementById('inp-tax').value)    || 0;
+    var days   = parseFloat(document.getElementById('inp-days').value)   || 0;
+    var rate   = parseFloat(document.getElementById('inp-rate').value)   || 4090.91;
+    var deduct = parseFloat(document.getElementById('inp-deduct').value) || 0;
+    var taxPct = parseFloat(document.getElementById('inp-tax').value)    || 0;
 
-    const subtotal = days * rate;
-    const taxAmt   = subtotal * (taxPct / 100);
-    const total    = subtotal - deduct - taxAmt;
+    var subtotal = days * rate;
+    var taxAmt   = subtotal * (taxPct / 100);
+    var total    = subtotal - deduct - taxAmt;
 
-    // Input cards
-    document.getElementById('days-val').textContent   = days;
-    document.getElementById('deduct-val').textContent = fmt(deduct);
-    document.getElementById('tax-val').textContent    = taxPct + '%';
+    document.getElementById('days-val').textContent    = days;
+    document.getElementById('deduct-val').textContent  = fmt(deduct);
+    document.getElementById('tax-val').textContent     = taxPct + '%';
 
-    // Table
-    document.getElementById('tb-days').textContent    = days;
+    document.getElementById('tb-days').textContent     = days;
     document.getElementById('tb-subtotal').textContent = fmt(subtotal);
     document.getElementById('tb-deduct').textContent   = '— ' + fmt(deduct);
     document.getElementById('tb-taxrate').textContent  = taxPct + '%';
     document.getElementById('tb-tax').textContent      = fmt(taxAmt);
 
-    // Totals
     document.getElementById('tot-sub').textContent    = fmt(subtotal);
-    document.getElementById('tot-deduct').textContent = '�
+    document.getElementById('tot-deduct').textContent = '\u2014 ' + fmt(deduct);
+    document.getElementById('tot-tax').textContent    = fmt(taxAmt);
+    document.getElementById('tot-total').textContent  = fmt(total);
+  }
+
+  // Auto-calculate on any input change
+  ['inp-days','inp-rate','inp-deduct','inp-tax'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', calculate);
+  });
+</script>
+</body>
+</html>
