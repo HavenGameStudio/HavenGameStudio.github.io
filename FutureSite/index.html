@@ -12,6 +12,26 @@
 <body>
 
 <!-- ═══════════════════════════════════════════
+     LOADING SCREEN
+════════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-logo">HAVEN</div>
+  <div class="loader-bar">
+    <div class="loader-progress"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL PROGRESS BAR
+════════════════════════════════════════════ -->
+<div id="scroll-progress"></div>
+
+<!-- ═══════════════════════════════════════════
+     CURSOR GLOW
+════════════════════════════════════════════ -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ═══════════════════════════════════════════
      PARTICLES
 ════════════════════════════════════════════ -->
 <div id="particles"></div>
@@ -141,12 +161,20 @@
       <h2 class="section-heading">OUR <span>GAMES</span></h2>
       <div class="gold-divider"></div>
       <p style="color:var(--muted);font-size:.9rem;margin-top:.5rem;">From shipped titles to worlds in the making — every project a testament to craft.</p>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All Games<span class="count">9</span></button>
+        <button class="filter-btn" data-filter="shipped">Shipped<span class="count">6</span></button>
+        <button class="filter-btn" data-filter="in-development">In Development<span class="count">1</span></button>
+        <button class="filter-btn" data-filter="concept">Concept<span class="count">2</span></button>
+      </div>
     </div>
 
-    <div class="games-grid">
+    <div class="games-grid" id="gamesGrid">
 
       <!-- SHADOWBANE: RECKONING -->
-      <div class="game-card bracket-card reveal">
+      <div class="game-card bracket-card reveal" data-status="in-development" data-title="Shadowbane: Reckoning" data-genre="Action RPG" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/d8f6f50be_generated_cb09c43d.png">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/d8f6f50be_generated_cb09c43d.png" alt="Shadowbane: Reckoning" loading="lazy" />
           <span class="game-status status-dev">In Development</span>
@@ -164,7 +192,7 @@
       </div>
 
       <!-- ARCANE VANGUARD -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.1s">
+      <div class="game-card bracket-card reveal" data-status="concept" data-title="Arcane Vanguard" data-genre="Tactical Shooter" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/1f41b507c_generated_5bfe1844.png" style="transition-delay:.1s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/1f41b507c_generated_5bfe1844.png" alt="Arcane Vanguard" loading="lazy" />
           <span class="game-status status-concept">Concept Phase</span>
@@ -182,7 +210,7 @@
       </div>
 
       <!-- ECHOES OF THE ARENA -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.2s">
+      <div class="game-card bracket-card reveal" data-status="concept" data-title="Echoes of the Arena" data-genre="Competitive Arena" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/1e8e52d7e_generated_59b2438d.png" style="transition-delay:.2s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/1e8e52d7e_generated_59b2438d.png" alt="Echoes of the Arena" loading="lazy" />
           <span class="game-status status-concept">Early Concept</span>
@@ -200,7 +228,7 @@
       </div>
 
       <!-- IQUIZ -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.05s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="iQuiz" data-genre="Mobile · Educational" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/bc8b81fc2_generated_image.png" data-demo="" style="transition-delay:.05s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/bc8b81fc2_generated_image.png" alt="iQuiz" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -218,7 +246,7 @@
       </div>
 
       <!-- CARDS AND MAGIC -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.15s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="Cards and Magic" data-genre="Mobile · Strategy" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/fc0a661f3_generated_image.png" style="transition-delay:.15s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/fc0a661f3_generated_image.png" alt="Cards and Magic" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -237,7 +265,7 @@
       </div>
 
       <!-- DIGIFIGHT -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.25s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="DigiFight" data-genre="Mobile · Web3" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/deaa7d35a_generated_image.png" style="transition-delay:.25s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/deaa7d35a_generated_image.png" alt="DigiFight" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -256,7 +284,7 @@
       </div>
 
       <!-- RAGS TO RICHES -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.1s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="Rags to Riches" data-genre="PC · Simulation" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/43c984372_generated_image.png" style="transition-delay:.1s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/43c984372_generated_image.png" alt="Rags to Riches" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -275,7 +303,7 @@
       </div>
 
       <!-- THE HORDE -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.2s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="The Horde" data-genre="PC · Tower Defense" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/372dc678a_generated_image.png" data-demo="https://play.unity.com/en/games/0a425ba0-9f35-407a-a486-73ff1d3dda06/last-keep-v011" style="transition-delay:.2s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/372dc678a_generated_image.png" alt="The Horde" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -298,7 +326,7 @@
       </div>
 
       <!-- EMPEROR'S GAMBIT -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.3s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="Emperor's Gambit" data-genre="Mobile · Board Game" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/d3d561e52_generated_image.png" data-demo="https://havengamestudio.github.io/Emperor's%20gambit%20tutorial/emperorsgambit.html" style="transition-delay:.3s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/d3d561e52_generated_image.png" alt="Emperor's Gambit" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -321,7 +349,7 @@
       </div>
 
       <!-- BUBBLY TYPING -->
-      <div class="game-card bracket-card reveal" style="transition-delay:.15s">
+      <div class="game-card bracket-card reveal" data-status="shipped" data-title="Bubbly Typing" data-genre="Mobile · Educational" data-img="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/78c0ef43f_generated_image.png" style="transition-delay:.15s">
         <div class="game-thumb">
           <img src="https://media.base44.com/images/public/69c68a56d56fa0d1a37dbe60/78c0ef43f_generated_image.png" alt="Bubbly Typing" loading="lazy" />
           <span class="game-status status-shipped">Shipped</span>
@@ -339,6 +367,32 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STATS SECTION
+════════════════════════════════════════════ -->
+<section id="stats">
+  <div class="section-wrap">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="9">0</span>+</div>
+        <div class="stat-label">Games Developed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="6">0</span></div>
+        <div class="stat-label">Shipped Titles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="10000">0</span>+</div>
+        <div class="stat-label">Downloads</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span data-count="1">0</span>st</div>
+        <div class="stat-label">Vision. One Mission.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -485,24 +539,96 @@
 </footer>
 
 <!-- ═══════════════════════════════════════════
+     GAME MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="gameModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <img class="modal-image" id="modalImage" src="" alt="">
+    <div class="modal-body">
+      <span class="modal-status" id="modalStatus"></span>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-genre" id="modalGenre"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════════ -->
 <script>
-/* ── Particles ── */
+/* ── Loading Screen ── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1800);
+});
+
+/* ── Scroll Progress Bar ── */
+(function() {
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrollPercent + '%';
+  }, { passive: true });
+})();
+
+/* ── Cursor Glow Effect ── */
+(function() {
+  const cursorGlow = document.getElementById('cursorGlow');
+  let mouseX = 0, mouseY = 0;
+  let currentX = 0, currentY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorGlow.classList.add('active');
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursorGlow.classList.remove('active');
+  });
+
+  function animateCursor() {
+    currentX += (mouseX - currentX) * 0.1;
+    currentY += (mouseY - currentY) * 0.1;
+    cursorGlow.style.left = currentX + 'px';
+    cursorGlow.style.top = currentY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+})();
+
+/* ── Enhanced Particles with Mouse Interaction ── */
 (function() {
   const container = document.getElementById('particles');
-  for (let i = 0; i < 20; i++) {
+  const particles = [];
+  const particleCount = 25;
+
+  for (let i = 0; i < particleCount; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
+    const size = Math.random() < 0.5 ? 1 : 2;
     p.style.cssText = `
       left: ${Math.random() * 100}%;
       bottom: -5px;
-      width: ${Math.random() < 0.5 ? 1 : 2}px;
-      height: ${Math.random() < 0.5 ? 1 : 2}px;
+      width: ${size}px;
+      height: ${size}px;
       animation-duration: ${8 + Math.random() * 12}s;
       animation-delay: ${Math.random() * 15}s;
     `;
     container.appendChild(p);
+    particles.push({ el: p, baseX: Math.random() * 100, speed: Math.random() * 0.5 + 0.5 });
   }
 })();
 
@@ -538,6 +664,169 @@ function closeMobile() {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
+})();
+
+/* ── Animated Counter for Stats ── */
+(function() {
+  const stats = document.querySelectorAll('.stat-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+          const counter = entry.target.querySelector('[data-count]');
+          if (counter) {
+            const target = parseInt(counter.dataset.count);
+            animateCounter(counter, target);
+          }
+        }, index * 150);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  stats.forEach(stat => observer.observe(stat));
+
+  function animateCounter(el, target) {
+    let current = 0;
+    const increment = target / 40;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        clearInterval(timer);
+        current = target;
+      }
+      el.textContent = Math.floor(current);
+    }, 30);
+  }
+})();
+
+/* ── Game Filter Tabs ── */
+(function() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const gameCards = document.querySelectorAll('.game-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      gameCards.forEach((card, index) => {
+        card.classList.remove('animate-in');
+        const status = card.dataset.status;
+
+        if (filter === 'all' || status === filter) {
+          card.classList.remove('hidden');
+          setTimeout(() => {
+            card.classList.add('animate-in');
+          }, index * 50);
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+
+/* ── Game Modal ── */
+(function() {
+  const modal = document.getElementById('gameModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalImage = document.getElementById('modalImage');
+  const modalStatus = document.getElementById('modalStatus');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalGenre = document.getElementById('modalGenre');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalTags = document.getElementById('modalTags');
+  const modalActions = document.getElementById('modalActions');
+
+  const gameCards = document.querySelectorAll('.game-card');
+
+  gameCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.btn-demo')) return;
+
+      const img = card.dataset.img;
+      const title = card.dataset.title;
+      const genre = card.dataset.genre;
+      const status = card.dataset.status;
+      const demo = card.dataset.demo;
+      const desc = card.querySelector('.game-desc').textContent;
+      const tags = card.querySelectorAll('.tag');
+
+      modalImage.src = img;
+      modalImage.alt = title;
+      modalTitle.textContent = title;
+      modalGenre.textContent = genre;
+      modalDesc.textContent = desc;
+
+      // Status
+      modalStatus.className = 'modal-status ' + (status === 'shipped' ? 'shipped' : status === 'in-development' ? 'in-development' : 'concept');
+      modalStatus.textContent = status === 'shipped' ? 'Shipped' : status === 'in-development' ? 'In Development' : 'Concept Phase';
+
+      // Tags
+      modalTags.innerHTML = '';
+      tags.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'modal-tag';
+        span.textContent = tag.textContent;
+        modalTags.appendChild(span);
+      });
+
+      // Actions
+      modalActions.innerHTML = '';
+      if (demo) {
+        const link = document.createElement('a');
+        link.href = demo;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.className = 'btn-primary';
+        link.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> Play Demo';
+        modalActions.appendChild(link);
+      }
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+})();
+
+/* ── 3D Card Tilt Effect ── */
+(function() {
+  const cards = document.querySelectorAll('.game-card');
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+
+      card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
 })();
 
 /* ── EmailJS & Contact Form ── */
