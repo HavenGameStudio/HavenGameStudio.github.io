@@ -1052,13 +1052,15 @@
       overflow: hidden;
       position: relative;
       flex-shrink: 0;
+      aspect-ratio: 1 / 1;
+      background: var(--panel-2);
     }
 
     .proj-img-wrap::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(21, 13, 10, 0.9));
+      background: linear-gradient(to bottom, transparent 60%, rgba(21, 13, 10, 0.85));
       opacity: 0;
       transition: opacity 0.35s;
     }
@@ -1069,22 +1071,15 @@
 
     .proj-img-wrap img {
       width: 100%;
-      object-fit: cover;
+      height: 100%;
+      object-fit: contain;
       transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
       display: block;
       filter: saturate(0.9);
     }
 
-    .proj-card.featured .proj-img-wrap img {
-      height: 240px;
-    }
-
-    .proj-img-wrap img {
-      height: 190px;
-    }
-
     .proj-card:hover .proj-img-wrap img {
-      transform: scale(1.07);
+      transform: scale(1.05);
     }
 
     .proj-body {
