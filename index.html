@@ -1181,25 +1181,40 @@
 
     .test-carousel {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       margin-top: 52px;
     }
 
     .test-track {
-      display: flex;
-      transition: transform 0.85s cubic-bezier(0.65, 0, 0.35, 1);
-      will-change: transform;
+      position: relative;
+      min-height: 200px;
+      perspective: 1400px;
+      transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .test-slide {
-      flex: 0 0 100%;
-      min-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       box-sizing: border-box;
       padding: 4px;
+      opacity: 0;
+      transform: rotateX(10deg) scale(0.94);
+      transform-origin: 50% 0%;
+      pointer-events: none;
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .test-slide.active {
+      opacity: 1;
+      transform: rotateX(0deg) scale(1);
+      pointer-events: auto;
+      z-index: 2;
     }
 
     .test-slide .test-card {
-      max-width: 680px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -1260,64 +1275,50 @@
     }
 
     .test-card {
-      background: var(--surface);
-      color: var(--on-surface);
-      border: 1px solid var(--border-2);
-      border-radius: var(--radius);
-      padding: 36px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-
-    .test-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-2);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .test-card:hover::before {
-      opacity: 1;
-    }
-
-    .test-card:hover {
-      border-color: var(--primary);
-      box-shadow: var(--glow), var(--shadow);
-      transform: translateY(-3px);
+      color: var(--fg);
+      text-align: center;
+      padding: 8px 16px;
     }
 
     .test-quote-icon {
       font-family: 'Inter', sans-serif;
       font-size: 72px;
       line-height: 0.6;
-      color: var(--primary);
+      color: var(--primary-light);
       opacity: 0.3;
       margin-bottom: 24px;
       user-select: none;
     }
 
     .test-text {
-      font-size: 15px;
-      color: var(--on-surface-2);
+      font-size: 16px;
+      color: var(--fg-2);
       line-height: 1.85;
       margin-bottom: 28px;
     }
 
     .test-author-block {
-      padding-top: 20px;
-      border-top: 1px solid var(--border-2);
+      position: relative;
+      margin-top: 8px;
+      padding-top: 24px;
+    }
+
+    .test-author-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 2px;
+      background: var(--gradient);
     }
 
     .test-author-name {
-      font-size: 15px;
+      font-size: 20px;
       font-weight: 600;
-      color: var(--on-surface);
+      letter-spacing: -0.01em;
+      color: var(--fg);
       margin-bottom: 3px;
     }
 
@@ -1326,18 +1327,19 @@
       font-size: 11px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--primary);
+      color: var(--primary-light);
       opacity: 0.9;
     }
 
     .test-rating {
       display: flex;
+      justify-content: center;
       gap: 3px;
       margin-bottom: 20px;
     }
 
     .star {
-      color: var(--primary);
+      color: var(--primary-light);
       font-size: 14px;
     }
 
@@ -2520,10 +2522,15 @@
       });
       const dots = Array.from(dotsWrap.children);
 
+      function syncHeight() {
+        track.style.height = slides[index].offsetHeight + 'px';
+      }
+
       function goTo(i) {
         index = (i + slides.length) % slides.length;
-        track.style.transform = `translateX(-${index * 100}%)`;
+        slides.forEach((s, si) => s.classList.toggle('active', si === index));
         dots.forEach((d, di) => d.classList.toggle('active', di === index));
+        syncHeight();
       }
 
       function next() { goTo(index + 1); }
@@ -2538,7 +2545,9 @@
       prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
       carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
       carousel.addEventListener('mouseleave', startAutoplay);
+      window.addEventListener('resize', syncHeight);
 
+      goTo(0);
       startAutoplay();
     })();
 
