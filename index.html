@@ -1179,19 +1179,84 @@
       background: transparent;
     }
 
-    .test-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    .test-carousel {
+      position: relative;
+      overflow: hidden;
       margin-top: 52px;
     }
 
-    .test-grid .test-card:first-child {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+    .test-track {
+      display: flex;
+      transition: transform 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+      will-change: transform;
+    }
+
+    .test-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 4px;
+    }
+
+    .test-slide .test-card {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .test-controls {
+      display: flex;
       align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .test-arrow {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--panel);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-sm);
+      color: var(--fg-2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .test-arrow:hover {
+      border-color: var(--primary-light);
+      color: var(--fg);
+      background: var(--panel-2);
+    }
+
+    .test-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .test-dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--border-2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .test-dot:hover {
+      background: var(--primary);
+    }
+
+    .test-dot.active {
+      width: 22px;
+      border-radius: 4px;
+      background: var(--primary-light);
     }
 
     .test-card {
@@ -1242,10 +1307,6 @@
       color: var(--on-surface-2);
       line-height: 1.85;
       margin-bottom: 28px;
-    }
-
-    .test-card:first-child .test-text {
-      font-size: 16px;
     }
 
     .test-author-block {
@@ -1557,10 +1618,6 @@
         gap: 48px;
       }
 
-      .test-grid .test-card:first-child {
-        grid-template-columns: 1fr;
-      }
-
       .hero-stats {
         flex-wrap: wrap;
       }
@@ -1627,13 +1684,8 @@
         margin-top: 0;
       }
 
-      .test-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .test-grid .test-card:first-child {
-        grid-column: auto;
-        grid-template-columns: 1fr;
+      .test-controls {
+        margin-top: 24px;
       }
 
       .form-row {
@@ -2219,53 +2271,95 @@
     <span class="section-label reveal">[ 04 ] Testimonials</span>
     <h2 class="section-title reveal reveal-delay-1">What People Say</h2>
 
-    <div class="test-grid">
-      <div class="test-card reveal reveal-delay-2">
-        <div class="test-rating">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
-            class="star">★</span><span class="star">★</span>
-        </div>
-        <div class="test-quote-icon">"</div>
-        <p class="test-text">Adrian's technical depth and creative instincts took our project further than we
-          anticipated. He's the kind of developer you can count on — sharp, dependable, and never misses a deadline.</p>
-        <div class="test-author-block">
-          <p class="test-author-name">Dominic Lim</p>
-          <span class="test-author-role">CEO, Niterion Designs</span>
-        </div>
-      </div>
-
-      <div class="test-card reveal reveal-delay-3">
-        <div class="test-rating">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
-            class="star">★</span><span class="star">★</span>
-        </div>
-        <div class="test-quote-icon">"</div>
-        <p class="test-text">Adrian worked with Buko Studios on a Unity mobile racing game project. A reliable and
-          attentive developer with a great attitude toward both support and development work. I'd happily recommend them
-          to any team looking for someone dependable and motivated.</p>
-        <div class="test-author-block">
-          <p class="test-author-name">Kevin Boase</p>
-          <span class="test-author-role">CEO, Buko Studios</span>
-        </div>
-      </div>
-      <div class="test-card reveal reveal-delay-1">
-        <div>
-          <div class="test-rating">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
-              class="star">★</span><span class="star">★</span>
+    <div class="test-carousel reveal reveal-delay-2">
+      <div class="test-track" id="test-track">
+        <div class="test-slide">
+          <div class="test-card">
+            <div class="test-rating">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                class="star">★</span><span class="star">★</span>
+            </div>
+            <div class="test-quote-icon">"</div>
+            <p class="test-text">I worked with Adrian building playable ads — 2D and 3D, Unity and Phaser, shipped to
+              major ad platforms. He took
+              projects from concept to release and was reliably the person you wanted on anything that had to actually
+              work. He also built internal tools to cut down on repetitive pipeline work. Nobody asked him to. Code was
+              clean, QA was
+              careful, and he helped teammates without being asked. I'd recommend him for any senior game dev role.</p>
+            <div class="test-author-block">
+              <p class="test-author-name">Jay Ar Marvilla</p>
+              <span class="test-author-role">Playable Ads Project Manager</span>
+            </div>
           </div>
-          <div class="test-quote-icon">"</div>
-          <p class="test-text">Working with Adrian was a standout experience. From day one, his depth in both 2D and 3D
-            Unity development was clear — he brought genuine creativity and professionalism to every stage of the
-            project. He hit every deadline, consistently pushed beyond what we asked for, and had a sharp eye for
-            detail. I'd recommend him without hesitation for any game development work, and I'm already looking forward
-            to the next opportunity to collaborate.</p>
         </div>
-        <div class="test-author-block">
-          <p class="test-author-name">Christian Mar Llarina</p>
-          <span class="test-author-role">Game Designer, CPL Game Studio</span>
+        <div class="test-slide">
+          <div class="test-card">
+            <div class="test-rating">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                class="star">★</span><span class="star">★</span>
+            </div>
+            <div class="test-quote-icon">"</div>
+            <p class="test-text">Adrian's technical depth and creative instincts took our project further than we
+              anticipated. He's the kind of developer you can count on — sharp, dependable, and never misses a
+              deadline.</p>
+            <div class="test-author-block">
+              <p class="test-author-name">Dominic Lim</p>
+              <span class="test-author-role">CEO, Niterion Designs</span>
+            </div>
+          </div>
+        </div>
+        <div class="test-slide">
+          <div class="test-card">
+            <div class="test-rating">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                class="star">★</span><span class="star">★</span>
+            </div>
+            <div class="test-quote-icon">"</div>
+            <p class="test-text">Adrian worked with Buko Studios on a Unity mobile racing game project. A reliable and
+              attentive developer with a great attitude toward both support and development work. I'd happily
+              recommend them
+              to any team looking for someone dependable and motivated.</p>
+            <div class="test-author-block">
+              <p class="test-author-name">Kevin Boase</p>
+              <span class="test-author-role">CEO, Buko Studios</span>
+            </div>
+          </div>
+        </div>
+        <div class="test-slide">
+          <div class="test-card">
+            <div class="test-rating">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                class="star">★</span><span class="star">★</span>
+            </div>
+            <div class="test-quote-icon">"</div>
+            <p class="test-text">Working with Adrian was a standout experience. From day one, his depth in both 2D and
+              3D
+              Unity development was clear — he brought genuine creativity and professionalism to every stage of the
+              project. He hit every deadline, consistently pushed beyond what we asked for, and had a sharp eye for
+              detail. I'd recommend him without hesitation for any game development work, and I'm already looking
+              forward
+              to the next opportunity to collaborate.</p>
+            <div class="test-author-block">
+              <p class="test-author-name">Christian Mar Llarina</p>
+              <span class="test-author-role">Game Designer, CPL Game Studio</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="test-controls">
+      <button class="test-arrow" id="test-prev" aria-label="Previous testimonial">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <div class="test-dots" id="test-dots"></div>
+      <button class="test-arrow" id="test-next" aria-label="Next testimonial">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
     </div>
   </section>
 
@@ -2402,6 +2496,50 @@
         requestAnimationFrame(loop);
       }
       loop();
+    })();
+
+    /* ── Testimonials carousel ────────────────────────────────── */
+    (function () {
+      const carousel = document.querySelector('.test-carousel');
+      const track = document.getElementById('test-track');
+      const dotsWrap = document.getElementById('test-dots');
+      const prevBtn = document.getElementById('test-prev');
+      const nextBtn = document.getElementById('test-next');
+      if (!carousel || !track) return;
+
+      const slides = Array.from(track.children);
+      let index = 0;
+      let autoplay;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'test-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+        dot.addEventListener('click', () => { goTo(i); startAutoplay(); });
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function goTo(i) {
+        index = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d, di) => d.classList.toggle('active', di === index));
+      }
+
+      function next() { goTo(index + 1); }
+      function prev() { goTo(index - 1); }
+
+      function startAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(next, 5000);
+      }
+
+      nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
+      prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
+      carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
+      carousel.addEventListener('mouseleave', startAutoplay);
+
+      startAutoplay();
     })();
 
     /* ── Mouse spotlight ──────────────────────────────────────── */
