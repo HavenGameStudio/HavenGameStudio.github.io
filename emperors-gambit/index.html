@@ -1,164 +1,129 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Unity WebGL Player | EmperorsGambit Fog of War</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico">
-  <link rel="stylesheet" href="TemplateData/style.css">
-  <style>
-    /* Back to portfolio button */
-    .portfolio-btn {
-      position: fixed;
-      top: 12px;
-      left: 12px;
-      z-index: 9999;
-
-      background: rgba(0, 0, 0, 0.65);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      padding: 7px 12px;
-      border-radius: 7px;
-      text-decoration: none;
-
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(4px);
-      transition: 0.2s;
-    }
-
-    .portfolio-btn:hover {
-      background: #c9a44c;
-      color: #000;
-      border-color: #c9a44c;
-    }
-  </style>
-</head>
-
-<body>
-  <a class="portfolio-btn" href="https://havengamestudio.github.io/" target="_blank">
-    ← Portfolio
-  </a>
-  <div id="unity-container" class="unity-desktop">
-    <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-    <div id="unity-loading-bar">
-      <div id="unity-logo"></div>
-      <div id="unity-progress-bar-empty">
-        <div id="unity-progress-bar-full"></div>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0a10">
+    <title>EmperorsGambit Fog of War</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
       </div>
+      <div id="unity-warning"> </div>
     </div>
-    <div id="unity-warning"> </div>
-    <div id="unity-footer">
-      <div id="unity-webgl-logo"></div>
-      <div id="unity-fullscreen-button"></div>
-      <div id="unity-build-title">EmperorsGambit Fog of War</div>
-    </div>
-  </div>
-  <script>
+    <script>
+      // Emperor's Gambit is laid out for portrait screens. Phones fill the screen; desktop and landscape
+      // windows get a centred portrait column so the UI and board keep the proportions they were built for.
+      var MIN_ASPECT = 9 / 21; // tallest supported shape (width / height)
+      var MAX_ASPECT = 9 / 16; // widest supported shape
 
-    var container = document.querySelector("#unity-container");
-    var canvas = document.querySelector("#unity-canvas");
-    var loadingBar = document.querySelector("#unity-loading-bar");
-    var progressBarFull = document.querySelector("#unity-progress-bar-full");
-    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-    var warningBanner = document.querySelector("#unity-warning");
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
 
-    // Shows a temporary message banner/ribbon for a few seconds, or
-    // a permanent error message on top of the canvas if type=='error'.
-    // If type=='warning', a yellow highlight color is used.
-    // Modify or remove this function to customize the visually presented
-    // way that non-critical warnings and error messages are presented to the
-    // user.
-    function unityShowBanner(msg, type) {
-      function updateBannerVisibility() {
-        warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+      function layoutCanvas() {
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var aspect = Math.min(Math.max(viewportWidth / viewportHeight, MIN_ASPECT), MAX_ASPECT);
+
+        var width = viewportWidth;
+        var height = viewportWidth / aspect;
+        if (height > viewportHeight) {
+          height = viewportHeight;
+          width = height * aspect;
+        }
+
+        container.style.width = Math.floor(width) + "px";
+        container.style.height = Math.floor(height) + "px";
       }
-      var div = document.createElement('div');
-      div.innerHTML = msg;
-      warningBanner.appendChild(div);
-      if (type == 'error') div.style = 'background: red; padding: 10px;';
-      else {
-        if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-        setTimeout(function () {
-          warningBanner.removeChild(div);
-          updateBannerVisibility();
-        }, 5000);
+
+      layoutCanvas();
+      window.addEventListener("resize", layoutCanvas);
+      window.addEventListener("orientationchange", layoutCanvas);
+
+      // Long-press on mobile would otherwise open the browser's context menu over the board.
+      canvas.addEventListener("contextmenu", function (event) { event.preventDefault(); });
+
+      // Shows a temporary message banner for a few seconds, or a permanent error message if type == 'error'.
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: #b3261e; color: white; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: #f2c94c; padding: 10px;';
+          setTimeout(function () {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
       }
-      updateBannerVisibility();
-    }
 
-    var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/WebGL.loader.js";
-    var config = {
-      dataUrl: buildUrl + "/WebGL.data",
-      frameworkUrl: buildUrl + "/WebGL.framework.js",
-      codeUrl: buildUrl + "/WebGL.wasm",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "HavenGameStudio",
-      productName: "EmperorsGambit Fog of War",
-      productVersion: "0.1.0",
-      showBanner: unityShowBanner,
-    };
+      // Filled in by Tools > Emperor's Gambit > Build WebGL (Release) when an ASTC data file ships next to the
+      // default DXT one. Desktop GPUs use DXT, phones use ASTC; the wrong one is decompressed on the CPU at load.
+      var ASTC_DATA_FILENAME = "";
 
-    // By default, Unity keeps WebGL canvas render target size matched with
-    // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-    // Set this to false if you want to decouple this synchronization from
-    // happening inside the engine, and you would instead like to size up
-    // the canvas DOM size and WebGL render target sizes yourself.
-    // config.matchWebGLToCanvasSize = false;
+      function supportsAstc() {
+        try {
+          var probe = document.createElement("canvas");
+          var gl = probe.getContext("webgl2") || probe.getContext("webgl");
+          if (!gl) return false;
+          var supported = !!gl.getExtension("WEBGL_compressed_texture_astc");
+          var loseContext = gl.getExtension("WEBGL_lose_context");
+          if (loseContext) loseContext.loseContext();
+          return supported;
+        } catch (e) {
+          return false;
+        }
+      }
 
-    // If you would like all file writes inside Unity Application.persistentDataPath
-    // directory to automatically persist so that the contents are remembered when
-    // the user revisits the site the next time, uncomment the following line:
-    // config.autoSyncPersistentDataPath = true;
-    // This autosyncing is currently not the default behavior to avoid regressing
-    // existing user projects that might rely on the earlier manual
-    // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-    // expected to change.
+      var dataFile = ASTC_DATA_FILENAME && supportsAstc() ? ASTC_DATA_FILENAME : "74fb71158c0a52248cc3de74318b7106.data.unityweb";
 
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      // Mobile device style: fill the whole browser client area with the game canvas:
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/e3f224f2f78bc7dba70053d703f7f9c2.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/" + dataFile,
+        frameworkUrl: buildUrl + "/0197df57d1202670660e76e87c80fb5d.framework.js.unityweb",
+        codeUrl: buildUrl + "/ad3e0de5fcb6eae7f1d15ea3e1db2463.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "HavenGameStudio",
+        productName: "EmperorsGambit Fog of War",
+        productVersion: "1.0a",
+        showBanner: unityShowBanner,
+        // Phones report a devicePixelRatio of 3 or more. Rendering at that density costs a lot of GPU time
+        // for little visible gain on a board game, so it is capped.
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+      };
 
-      var meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-      document.getElementsByTagName('head')[0].appendChild(meta);
-      container.className = "unity-mobile";
-      canvas.className = "unity-mobile";
+      document.querySelector("#unity-loading-bar").style.display = "block";
 
-      // To lower canvas resolution on mobile devices to gain some
-      // performance, uncomment the following line:
-      // config.devicePixelRatio = 1;
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = function () {
+        createUnityInstance(canvas, config, function (progress) {
+          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+        }).then(function (unityInstance) {
+          document.querySelector("#unity-loading-bar").style.display = "none";
+        }).catch(function (message) {
+          unityShowBanner(message, 'error');
+        });
+      };
 
-
-    } else {
-      // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
-      canvas.style.width = "960px";
-      canvas.style.height = "600px";
-    }
-
-    loadingBar.style.display = "block";
-
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      createUnityInstance(canvas, config, (progress) => {
-        progressBarFull.style.width = 100 * progress + "%";
-      }).then((unityInstance) => {
-        loadingBar.style.display = "none";
-        fullscreenButton.onclick = () => {
-          unityInstance.SetFullscreen(1);
-        };
-      }).catch((message) => {
-        alert(message);
-      });
-    };
-
-    document.body.appendChild(script);
-
-  </script>
-</body>
-
+      document.body.appendChild(script);
+    </script>
+  </body>
 </html>
