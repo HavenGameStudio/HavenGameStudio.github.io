@@ -404,19 +404,6 @@
       }
     }
 
-    /* ─── Mouse Spotlight ────────────────────────────────────────── */
-    #spotlight {
-      position: fixed;
-      pointer-events: none;
-      z-index: 0;
-      width: 640px;
-      height: 640px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 58, 42, 0.10) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      transition: left 0.15s ease, top 0.15s ease;
-    }
-
     /* ─── Hero Section ───────────────────────────────────────────── */
     #hero {
       min-height: 100vh;
@@ -428,85 +415,6 @@
       max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
-    }
-
-    .hero-orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(130px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-orb-1 {
-      width: 720px;
-      height: 720px;
-      background: radial-gradient(circle, rgba(139, 58, 42, 0.30), transparent 70%);
-      top: -220px;
-      left: -220px;
-      animation: orbFloat1 20s ease-in-out infinite;
-    }
-
-    .hero-orb-2 {
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, rgba(200, 196, 188, 0.08), transparent 70%);
-      bottom: -100px;
-      right: -100px;
-      animation: orbFloat2 25s ease-in-out infinite;
-    }
-
-    .hero-orb-3 {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, rgba(139, 58, 42, 0.16), transparent 70%);
-      top: 30%;
-      right: 8%;
-      animation: orbFloat3 18s ease-in-out infinite;
-    }
-
-    @keyframes orbFloat1 {
-
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      33% {
-        transform: translate(60px, 40px);
-      }
-
-      66% {
-        transform: translate(-40px, 70px);
-      }
-    }
-
-    @keyframes orbFloat2 {
-
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      40% {
-        transform: translate(-50px, -60px);
-      }
-
-      70% {
-        transform: translate(40px, -30px);
-      }
-    }
-
-    @keyframes orbFloat3 {
-
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      50% {
-        transform: translate(-30px, 50px);
-      }
     }
 
     #hero>* {
@@ -781,12 +689,6 @@
       border-radius: var(--radius);
       margin-top: 32px;
       border-left: 3px solid var(--primary-light);
-    }
-
-    .about-highlight .icon {
-      font-size: 24px;
-      flex-shrink: 0;
-      margin-top: 2px;
     }
 
     .about-highlight h4 {
@@ -1085,6 +987,12 @@
 
     .case-media--phone {
       aspect-ratio: 9 / 16;
+      background: var(--bg);
+    }
+
+    /* The poster is square, but the frame is portrait to fit the game, so letterbox instead of cropping */
+    .case-media.case-media--phone img {
+      object-fit: contain;
     }
 
     .case-media img,
@@ -1740,14 +1648,6 @@
       background: linear-gradient(90deg, transparent, var(--border-2), transparent);
     }
 
-    /* ─── Floating particles canvas overlay ─────────────────────── */
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
     /* ─── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .case {
@@ -1812,6 +1712,11 @@
 
       .hero-title {
         font-size: clamp(2.8rem, 12vw, 5rem);
+      }
+
+      /* On phones the hero is taller than the viewport, so the indicator would sit on top of the stats */
+      .scroll-indicator {
+        display: none;
       }
 
       .timeline::before {
@@ -1900,17 +1805,6 @@
   <!-- Background grid -->
   <div id="bg-grid"></div>
 
-  <!-- Mouse spotlight -->
-  <div id="spotlight"></div>
-
-  <!-- Particle canvas -->
-  <canvas id="particles"></canvas>
-
-  <!-- Background orbs -->
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-
   <!-- Side rails — fill the wide-viewport gutters -->
   <div class="side-rail side-rail-left">
     <ul class="side-social">
@@ -1967,14 +1861,14 @@
     <a href="#projects" onclick="closeMobile()">Work</a>
     <a href="#testimonials" onclick="closeMobile()">Testimonials</a>
     <a href="#contact" onclick="closeMobile()">Contact</a>
-    <a href="mailto:adriancaamino.ac@gmail.com" style="color:var(--primary-light);font-weight:600;">✉ Hire Me</a>
+    <a href="mailto:adriancaamino.ac@gmail.com" style="color:var(--primary-light);font-weight:600;">Hire Me</a>
   </div>
 
   <!-- ─── HERO ─────────────────────────────────────────────────────── -->
   <section id="hero">
     <div class="hero-eyebrow reveal">
       <span class="pulse"></span>
-      [ SYS.STATUS ] :: AVAILABLE_FOR_WORK
+      Available for work
     </div>
 
     <h1 class="hero-title">
@@ -2062,7 +1956,6 @@
           <p>I'm looking for a senior Unity role, full-time or contract.</p>
         </div>
         <div class="about-highlight reveal reveal-delay-3">
-          <span class="icon">🎓</span>
           <div>
             <h4>BS Entertainment &amp; Multimedia Computing</h4>
             <p>Major in Game Development &middot; Bataan Peninsula State University &middot; 2018–2022</p>
@@ -2072,7 +1965,7 @@
 
       <div class="skills-container reveal reveal-delay-2">
         <div class="skill-group">
-          <p class="skill-group-title">// Core Engine</p>
+          <p class="skill-group-title">Core Engine</p>
           <div class="skill-tags">
             <span class="skill-tag featured"><span class="skill-dot"></span>Unity 2D/3D</span>
             <span class="skill-tag featured"><span class="skill-dot"></span>C# Gameplay</span>
@@ -2090,7 +1983,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <p class="skill-group-title">// Multiplayer &amp; Networking</p>
+          <p class="skill-group-title">Multiplayer &amp; Networking</p>
           <div class="skill-tags">
             <span class="skill-tag featured"><span class="skill-dot"></span>Unity NGO</span>
             <span class="skill-tag featured"><span class="skill-dot"></span>Photon PUN</span>
@@ -2098,7 +1991,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <p class="skill-group-title">// AI &amp; Systems</p>
+          <p class="skill-group-title">AI &amp; Systems</p>
           <div class="skill-tags">
             <span class="skill-tag featured"><span class="skill-dot"></span>Behavior Trees</span>
             <span class="skill-tag">NavMesh</span>
@@ -2108,7 +2001,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <p class="skill-group-title">// Platform &amp; Backend</p>
+          <p class="skill-group-title">Platform &amp; Backend</p>
           <div class="skill-tags">
             <span class="skill-tag featured"><span class="skill-dot"></span>Firebase</span>
             <span class="skill-tag featured"><span class="skill-dot"></span>PlayFab SDK</span>
@@ -2119,7 +2012,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <p class="skill-group-title">// Team</p>
+          <p class="skill-group-title">Team</p>
           <div class="skill-tags">
             <span class="skill-tag featured"><span class="skill-dot"></span>Code Reviews</span>
             <span class="skill-tag">Mentorship</span>
@@ -2487,7 +2380,12 @@
           way to reach me.</p>
         <div class="contact-items reveal reveal-delay-3">
           <a href="mailto:adriancaamino.ac@gmail.com" class="contact-item">
-            <span class="contact-item-icon">✉</span>
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </span>
             adriancaamino.ac@gmail.com
           </a>
         </div>
@@ -2552,52 +2450,6 @@
   </button>
 
   <script>
-    /* ── Particles ────────────────────────────────────────────── */
-    (function () {
-      const canvas = document.getElementById('particles');
-      const ctx = canvas.getContext('2d');
-      let W, H, particles = [];
-
-      function resize() {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      class Particle {
-        constructor() { this.reset(true); }
-        reset(random) {
-          this.x = Math.random() * W;
-          this.y = random ? Math.random() * H : H + 10;
-          this.r = Math.random() * 1.2 + 0.3;
-          this.speed = Math.random() * 0.35 + 0.1;
-          this.opacity = Math.random() * 0.35 + 0.05;
-          this.drift = (Math.random() - 0.5) * 0.15;
-        }
-        update() {
-          this.y -= this.speed;
-          this.x += this.drift;
-          if (this.y < -10) this.reset(false);
-        }
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(197,105,79,${this.opacity})`;
-          ctx.fill();
-        }
-      }
-
-      for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-      function loop() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(loop);
-      }
-      loop();
-    })();
-
     /* ── Emperor's Gambit player ──────────────────────────────── */
     // The WebGL build is 31 MB, so it only loads when the visitor asks for it.
     document.getElementById('eg-play').addEventListener('click', () => {
@@ -2659,13 +2511,6 @@
       goTo(0);
       startAutoplay();
     })();
-
-    /* ── Mouse spotlight ──────────────────────────────────────── */
-    const spotlight = document.getElementById('spotlight');
-    document.addEventListener('mousemove', e => {
-      spotlight.style.left = e.clientX + 'px';
-      spotlight.style.top = e.clientY + 'px';
-    });
 
     /* ── Scroll progress ──────────────────────────────────────── */
     const progressBar = document.getElementById('scroll-progress');
@@ -2746,17 +2591,6 @@
     /* ── Mobile menu ──────────────────────────────────────────── */
     function toggleMobile() { document.getElementById('mobile-menu').classList.toggle('open'); }
     function closeMobile() { document.getElementById('mobile-menu').classList.remove('open'); }
-
-    /* ── Magnetic button effect ───────────────────────────────── */
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('mousemove', e => {
-        const rect = btn.getBoundingClientRect();
-        const dx = (e.clientX - rect.left - rect.width / 2) * 0.18;
-        const dy = (e.clientY - rect.top - rect.height / 2) * 0.18;
-        btn.style.transform = `translate(${dx}px,${dy}px) translateY(-2px)`;
-      });
-      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-    });
 
     /* ── Smooth close mobile menu on nav link click ───────────── */
     document.querySelectorAll('.nav-links a').forEach(a => {
