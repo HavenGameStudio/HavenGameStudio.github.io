@@ -2047,8 +2047,11 @@
             <h3 class="tl-role">Senior Unity Developer</h3>
             <p class="tl-company">Buko Studios</p>
             <ul class="tl-list">
-              <li>Built <strong>Radical Racing Game</strong>, a Unity mobile racing game for one of the Philippines' largest oil &amp; energy companies, with a
-                <strong>team of 5</strong>. It's in internal QA now, with no open bugs so far.</li>
+              <li>Built <strong>Radical Racing Game</strong>, a Unity WebGL racing game for one of the Philippines'
+                largest oil &amp; energy companies, with a <strong>team of 5</strong>. It runs inside the client's app
+                and talks to it over a REST API. It's in internal QA now, with no open bugs so far.</li>
+              <li>Got gyro steering working in mobile browsers with a <strong>.jslib plugin</strong> that requests
+                device orientation and motion permission.</li>
               <li>Built an in-editor <strong>device simulator</strong> so the team could check adaptive resolution and
                 layout without deploying to a phone.</li>
               <li>Built a debugger tool that pinpoints where a problem happens, so bugs get fixed without guesswork.</li>
@@ -2206,21 +2209,32 @@
         <div class="case-body">
           <div class="proj-tags">
             <span class="proj-tag">Unity</span>
-            <span class="proj-tag cyan">Mobile</span>
+            <span class="proj-tag">WebGL</span>
+            <span class="proj-tag cyan">Mobile browser</span>
             <span class="proj-tag">Client · NDA</span>
           </div>
           <h3 class="case-title">Radical Racing Game · Buko Studios</h3>
-          <p class="case-summary">A Unity racing game for one of the Philippines' largest oil &amp; energy companies.
-            It's under NDA, so there are no visuals here.</p>
+          <p class="case-summary">A Unity racing game for one of the Philippines' largest oil &amp; energy companies. It
+            runs as a WebGL build inside an iframe in the client's own app. It's under NDA, so there are no visuals
+            here.</p>
           <dl class="case-facts">
             <dt>Role</dt>
             <dd>Senior Unity Developer, project-based, in a team of 5</dd>
             <dt>Stack</dt>
-            <dd>Unity, C#, Android and iOS</dd>
+            <dd>Unity, C#, WebGL, .jslib browser plugins, REST API</dd>
             <dt>Hard problem</dt>
-            <dd>Checking the UI on every phone resolution meant constant device deploys. I built an in-editor device
-              simulator that shows how the layout adapts and what needs adjusting, plus a debugger that pinpoints where
-              a problem happens.</dd>
+            <dd>Tilt steering worked in the Android build but not in WebGL, because mobile browsers block the gyroscope
+              and orientation sensors until the page asks for permission. I wrote a .jslib plugin that has the browser
+              request that permission from the device, so gyro steering works inside the client's app.</dd>
+            <dt>Integration</dt>
+            <dd>The game talks to the host app through a REST API, sending and receiving player data while embedded
+              in its iframe.</dd>
+            <dt>Performance</dt>
+            <dd>Tuned to run in a phone's browser, where memory and GPU budgets are much tighter than in a native
+              build.</dd>
+            <dt>Tooling</dt>
+            <dd>An in-editor device simulator for checking adaptive layouts without a phone, and a debugger that
+              pinpoints where a problem happens.</dd>
             <dt>Status</dt>
             <dd>In internal QA, no open bugs so far</dd>
           </dl>
