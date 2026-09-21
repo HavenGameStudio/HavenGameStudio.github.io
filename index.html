@@ -1053,75 +1053,158 @@
       margin-bottom: 60px;
     }
 
-    .featured-projects {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .case-list {
+      display: flex;
+      flex-direction: column;
       gap: 28px;
-      margin-bottom: 28px;
     }
 
-    .proj-grid {
+    .case {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .proj-card {
+      grid-template-columns: minmax(0, 360px) 1fr;
+      gap: 40px;
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+      padding: 28px;
     }
 
-    .proj-card:hover {
-      border-color: rgba(139, 58, 42, 0.4);
-      box-shadow: var(--glow), var(--shadow-lg);
-      transform: translateY(-6px);
+    .case--text {
+      grid-template-columns: 1fr;
     }
 
-    .proj-img-wrap {
-      overflow: hidden;
+    .case-media {
       position: relative;
-      flex-shrink: 0;
       aspect-ratio: 1 / 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
       background: var(--panel-2);
     }
 
-    .proj-img-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(21, 13, 10, 0.85));
-      opacity: 0;
-      transition: opacity 0.35s;
+    .case-media--phone {
+      aspect-ratio: 9 / 16;
     }
 
-    .proj-card:hover .proj-img-wrap::after {
-      opacity: 1;
-    }
-
-    .proj-img-wrap img {
+    .case-media img,
+    .case-media iframe {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      object-fit: cover;
+      border: 0;
       display: block;
-      filter: saturate(0.9);
     }
 
-    .proj-card:hover .proj-img-wrap img {
-      transform: scale(1.05);
+    .case-play {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      white-space: nowrap;
     }
 
-    .proj-body {
-      padding: 24px;
-      flex: 1;
+    .case-play:hover {
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    .case-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .case-summary {
+      font-size: 16px;
+      color: var(--fg-2);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 640px;
+    }
+
+    .case-facts {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px 20px;
+      margin-bottom: 24px;
+    }
+
+    .case-facts dt {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      padding-top: 3px;
+    }
+
+    .case-facts dd {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .case-links {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .other-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 64px 0 20px;
+    }
+
+    .other-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .other-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .other-item img {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .other-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+
+    .other-name span {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--muted-2);
+      margin-top: 2px;
+    }
+
+    .other-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .other-desc .proj-link {
+      margin-top: 6px;
     }
 
     .proj-tags {
@@ -1150,26 +1233,6 @@
       border-color: var(--border-2);
     }
 
-    .proj-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .proj-card.featured .proj-title {
-      font-size: 22px;
-    }
-
-    .proj-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 16px;
-      flex: 1;
-    }
-
     .proj-link {
       display: inline-flex;
       align-items: center;
@@ -1195,18 +1258,6 @@
 
     .proj-link:hover svg {
       transform: translateX(3px);
-    }
-
-    .proj-number {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--muted-2);
-      letter-spacing: 0.1em;
-      z-index: 2;
     }
 
     /* ─── Testimonials ───────────────────────────────────────────── */
@@ -1364,18 +1415,6 @@
       text-transform: uppercase;
       color: var(--primary-light);
       opacity: 0.9;
-    }
-
-    .test-rating {
-      display: flex;
-      justify-content: center;
-      gap: 3px;
-      margin-bottom: 20px;
-    }
-
-    .star {
-      color: var(--primary-light);
-      font-size: 14px;
     }
 
     /* ─── Contact Section ────────────────────────────────────────── */
@@ -1708,14 +1747,17 @@
     }
 
     /* ─── Responsive ─────────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .proj-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
     @media (max-width: 900px) {
-      .featured-projects {
+      .case {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .case-media {
+        max-width: 360px;
+      }
+
+      .other-list {
         grid-template-columns: 1fr;
       }
 
@@ -1823,8 +1865,17 @@
     }
 
     @media (max-width: 640px) {
-      .proj-grid {
+      .case {
+        padding: 20px;
+      }
+
+      .case-facts {
         grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .case-facts dd {
+        margin-bottom: 10px;
       }
 
       .hero-cta {
@@ -2199,150 +2250,168 @@
     <div class="proj-header">
       <span class="section-label reveal">[ 03 ] Portfolio</span>
       <h2 class="section-title reveal reveal-delay-1">Selected Projects</h2>
-      <p class="section-sub reveal reveal-delay-2">Games and interactive experiences shipped across mobile, PC, and
-        WebGL — from solo-built prototypes to team-led productions.</p>
+      <p class="section-sub reveal reveal-delay-2">Four projects in detail, then the rest.</p>
     </div>
 
-    <div class="featured-projects">
-      <div class="proj-card featured reveal reveal-delay-1">
-        <span class="proj-number">01</span>
-        <div class="proj-img-wrap">
-          <img src="./images/iquiz.png" alt="IQuiz" loading="lazy">
+    <div class="case-list">
+      <article class="case reveal">
+        <div class="case-media case-media--phone" id="eg-player">
+          <img src="./images/emperors-gambit.png" alt="Emperor's Gambit title screen" width="1024" height="1024"
+            loading="lazy">
+          <button type="button" class="btn btn-primary case-play" id="eg-play">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            Play in browser (31 MB)
+          </button>
         </div>
-        <div class="proj-body">
+        <div class="case-body">
           <div class="proj-tags">
             <span class="proj-tag">Unity</span>
-            <span class="proj-tag">Mobile</span>
-            <span class="proj-tag cyan">Educational</span>
+            <span class="proj-tag">WebGL</span>
+            <span class="proj-tag cyan">Mobile</span>
           </div>
-          <h3 class="proj-title">IQuiz</h3>
-          <p class="proj-desc">The ultimate knowledge-enhancing experience. Four exciting game modes challenge and
-            expand understanding across various topics. Compete, learn, and dominate the leaderboard — featuring account
-            systems, real-time scoring, and adaptive difficulty.</p>
+          <h3 class="case-title">Emperor's Gambit</h3>
+          <p class="case-summary">A hidden-information board game: you win by killing the enemy Emperor, walking yours
+            to their back line, or running out their clock.</p>
+          <dl class="case-facts">
+            <dt>Stack</dt>
+            <dd>Unity, C#, WebGL build that fits any screen from 9:21 portrait up</dd>
+            <dt>Hard problem</dt>
+            <dd>Combat between 12 unit ranks where only the loser is revealed, so the winner's identity stays hidden.
+              On top of that sit 10 Warlords, each with 2 mana-based abilities, that can bend movement rules.</dd>
+            <dt>Number</dt>
+            <dd>31 MB WebGL build, playable right here</dd>
+          </dl>
+          <div class="case-links">
+            <a href="./emperors-gambit/" target="_blank" rel="noopener" class="proj-link">Open full screen ↗</a>
+            <a href="./Emperor's%20gambit%20tutorial/emperorsgambit.html" target="_blank" rel="noopener"
+              class="proj-link">How to play ↗</a>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="proj-card featured reveal reveal-delay-2">
-        <span class="proj-number">02</span>
-        <div class="proj-img-wrap">
-          <img src="./images/cards-and-magic.png" alt="Cards and Magic" loading="lazy">
+      <article class="case reveal">
+        <div class="case-media">
+          <img src="./images/cards-and-magic.png" alt="Cards and Magic battle screen" width="1024" height="1024"
+            loading="lazy">
         </div>
-        <div class="proj-body">
+        <div class="case-body">
           <div class="proj-tags">
             <span class="proj-tag">Unity</span>
+            <span class="proj-tag">Photon PUN</span>
             <span class="proj-tag cyan">Multiplayer</span>
-            <span class="proj-tag">Strategy</span>
-            <span class="proj-tag">Photon</span>
-            <span class="proj-tag">IAP</span>
           </div>
-          <h3 class="proj-title">Cards and Magic</h3>
-          <p class="proj-desc">A multiplayer turn-based strategy game inspired by Axie. Players use cards to attack,
-            defend, and strategize. Features real-time Photon networking, card shuffling, account system, in-app
-            purchases, shop, inventory, and a full vs-AI mode.</p>
+          <h3 class="case-title">Cards and Magic</h3>
+          <p class="case-summary">A turn-based multiplayer card battler where players attack, defend, and play around
+            each other's hands.</p>
+          <dl class="case-facts">
+            <dt>Stack</dt>
+            <dd>Unity, C#, Photon PUN, in-app purchases</dd>
+            <dt>Hard problem</dt>
+            <dd>Keeping two players' decks, shuffles, hands, and turn order in sync over Photon. The same rules also
+              drive an AI opponent for single-player, along with accounts, a shop, and inventory.</dd>
+            <dt>Number</dt>
+            <dd>Target was 60 FPS; after optimization it runs at up to 120 FPS</dd>
+          </dl>
         </div>
-      </div>
+      </article>
+
+      <article class="case case--text reveal">
+        <div class="case-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag cyan">Mobile</span>
+            <span class="proj-tag">Client · NDA</span>
+          </div>
+          <h3 class="case-title">Mobile racing game · Buko Studios</h3>
+          <p class="case-summary">A Unity racing game for one of the Philippines' largest oil &amp; energy companies.
+            It's under NDA, so there are no visuals here.</p>
+          <dl class="case-facts">
+            <dt>Role</dt>
+            <dd>Senior Unity Developer, project-based, in a team of 5</dd>
+            <dt>Stack</dt>
+            <dd>Unity, C#, Android and iOS</dd>
+            <dt>Hard problem</dt>
+            <dd>Checking the UI on every phone resolution meant constant device deploys. I built an in-editor device
+              simulator that shows how the layout adapts and what needs adjusting, plus a debugger that pinpoints where
+              a problem happens.</dd>
+            <dt>Status</dt>
+            <dd>In internal QA, no open bugs so far</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case case--text reveal">
+        <div class="case-body">
+          <div class="proj-tags">
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">Phaser</span>
+            <span class="proj-tag cyan">Playable Ads</span>
+          </div>
+          <h3 class="case-title">Playable ads · HPL Game Design Corporation</h3>
+          <p class="case-summary">2D and 3D playable ads for Facebook, each taken from concept to delivery.</p>
+          <dl class="case-facts">
+            <dt>Stack</dt>
+            <dd>Unity, Phaser 3, JavaScript / TypeScript</dd>
+            <dt>Hard problem</dt>
+            <dd>Fitting real gameplay, art, and audio into one file small enough for ad networks to accept.</dd>
+            <dt>Number</dt>
+            <dd>Every build under the strict 5 MB limit</dd>
+          </dl>
+        </div>
+      </article>
     </div>
 
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <span class="proj-number">03</span>
-        <div class="proj-img-wrap">
-          <img src="./images/Digifight.png" alt="Digifight" loading="lazy">
+    <h3 class="other-title reveal">Other work</h3>
+    <ul class="other-list">
+      <li class="other-item reveal">
+        <img src="./images/the-horde.png" alt="" width="1024" height="1024" loading="lazy">
+        <div>
+          <p class="other-name">Last Keep <span>Client project · finished prototype · Unity 2D</span></p>
+          <p class="other-desc">Top-down pixel-art defense: hold the keep against enemy waves, spawn allies, run gold
+            mines, and upgrade defenses. <a href="https://papayaah.itch.io/last-keep" target="_blank"
+              rel="noopener" class="proj-link">Play on the client's itch.io ↗</a></p>
         </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Unity</span><span class="proj-tag cyan">Web3</span><span
-              class="proj-tag">Multiplayer</span></div>
-          <h3 class="proj-title">Digifight</h3>
-          <p class="proj-desc">The ultimate cockfighting game powered by Web3. Raise, train, and battle unique roosters
-            in intense online matches with blockchain integration and strategic gameplay.</p>
+      </li>
+      <li class="other-item reveal">
+        <img src="./images/Digifight.png" alt="" width="1024" height="1024" loading="lazy">
+        <div>
+          <p class="other-name">Digifight <span>Unity · Multiplayer · Web3</span></p>
+          <p class="other-desc">Online PvP battle game: networked matches plus blockchain integration for in-game
+            assets.</p>
         </div>
-      </div>
-
-      <div class="proj-card reveal reveal-delay-1">
-        <span class="proj-number">04</span>
-        <div class="proj-img-wrap">
-          <img src="./images/rags-to-riches.png" alt="Rags to Riches" loading="lazy">
+      </li>
+      <li class="other-item reveal">
+        <img src="./images/vr.png" alt="" width="1024" height="1024" loading="lazy">
+        <div>
+          <p class="other-name">VR Architectural Viz <span>Unreal Engine 5 · C++ · Quest 2/3</span></p>
+          <p class="other-desc">A VR real-estate walkthrough with locomotion, grabbable objects, and in-world UI.</p>
         </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Unity</span><span class="proj-tag">3D</span><span
-              class="proj-tag cyan">Simulation</span></div>
-          <h3 class="proj-title">Rags to Riches</h3>
-          <p class="proj-desc">An immersive 3D simulation where players journey from poverty to wealth through strategic
-            investments, job applications, and life management decisions.</p>
+      </li>
+      <li class="other-item reveal">
+        <img src="./images/iquiz.png" alt="" width="1024" height="1024" loading="lazy">
+        <div>
+          <p class="other-name">IQuiz <span>Unity · Mobile</span></p>
+          <p class="other-desc">A quiz game with four modes, accounts, and a leaderboard.</p>
         </div>
-      </div>
-
-      <div class="proj-card reveal reveal-delay-2">
-        <span class="proj-number">05</span>
-        <div class="proj-img-wrap">
-          <img src="./images/the-horde.png" alt="The Horde" loading="lazy">
+      </li>
+      <li class="other-item reveal">
+        <img src="./images/rags-to-riches.png" alt="" width="1024" height="1024" loading="lazy">
+        <div>
+          <p class="other-name">Rags to Riches <span>Unity · 3D</span></p>
+          <p class="other-desc">A life sim: go from broke to rich through jobs, investments, and day-to-day decisions.
+          </p>
         </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Unity</span><span class="proj-tag">2D</span><span
-              class="proj-tag cyan">Pixel Art</span></div>
-          <h3 class="proj-title">The Horde</h3>
-          <p class="proj-desc">A 2D top-down pixel art defense game. Protect your keep from relentless enemy waves,
-            spawn allies, manage gold mines, and upgrade defenses.</p>
-          <a href="https://papayaah.itch.io/last-keep" target="_blank" class="proj-link">
-            Play Demo
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </a>
+      </li>
+      <li class="other-item reveal">
+        <img src="./images/bubbly-typing.png" alt="" width="1024" height="1024" loading="lazy">
+        <div>
+          <p class="other-name">Bubbly Typing <span>Unity · Mobile</span></p>
+          <p class="other-desc">A typing trainer with four game modes.</p>
         </div>
-      </div>
-
-      <div class="proj-card reveal">
-        <span class="proj-number">06</span>
-        <div class="proj-img-wrap">
-          <img src="./images/emperors-gambit.png" alt="Emperor's Gambit" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Unity</span><span class="proj-tag">Mobile</span><span
-              class="proj-tag cyan">Board Game</span></div>
-          <h3 class="proj-title">Emperor's Gambit</h3>
-          <p class="proj-desc">A strategic hidden-information board game for mobile. Outsmart your opponent by
-            eliminating their Emperor, escorting yours to victory, or running down their timer.</p>
-          <a href="https://havengamestudio.github.io/Emperor's%20gambit%20tutorial/emperorsgambit.html" target="_blank"
-            class="proj-link">
-            Play Demo
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="proj-card reveal reveal-delay-1">
-        <span class="proj-number">07</span>
-        <div class="proj-img-wrap">
-          <img src="./images/bubbly-typing.png" alt="Bubbly Typing" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">Unity</span><span class="proj-tag">Mobile</span><span
-              class="proj-tag cyan">Educational</span></div>
-          <h3 class="proj-title">Bubbly Typing</h3>
-          <p class="proj-desc">Enhance typing skills with fun and interactive gameplay across four dynamic modes.
-            Perfect for all skill levels, turning learning into a bubbly adventure.</p>
-        </div>
-      </div>
-
-      <div class="proj-card reveal reveal-delay-2">
-        <span class="proj-number">08</span>
-        <div class="proj-img-wrap">
-          <img src="./images/vr.png" alt="VR Architectural Viz" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="proj-tag">UE5</span><span class="proj-tag">VR</span><span
-              class="proj-tag cyan">C++</span></div>
-          <h3 class="proj-title">VR Architectural Viz</h3>
-          <p class="proj-desc">Immersive VR walkthrough for real estate showcasing with locomotion, grabbable objects,
-            and interactive UI. Real-time photorealistic rendering optimized for Quest 2/3.</p>
-        </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </section>
 
   <div class="divider">
@@ -2358,10 +2427,6 @@
       <div class="test-track" id="test-track">
         <div class="test-slide">
           <div class="test-card">
-            <div class="test-rating">
-              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
-                class="star">★</span><span class="star">★</span>
-            </div>
             <div class="test-quote-icon">"</div>
             <p class="test-text">I worked with Adrian building playable ads — 2D and 3D, Unity and Phaser, shipped to
               major ad platforms. He took
@@ -2371,16 +2436,12 @@
               careful, and he helped teammates without being asked. I'd recommend him for any senior game dev role.</p>
             <div class="test-author-block">
               <p class="test-author-name">Jay Ar Marvilla</p>
-              <span class="test-author-role">Playable Ads Project Manager</span>
+              <span class="test-author-role">Playable Ads Project Manager, HPL Game Design Corporation</span>
             </div>
           </div>
         </div>
         <div class="test-slide">
           <div class="test-card">
-            <div class="test-rating">
-              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
-                class="star">★</span><span class="star">★</span>
-            </div>
             <div class="test-quote-icon">"</div>
             <p class="test-text">Adrian's technical depth and creative instincts took our project further than we
               anticipated. He's the kind of developer you can count on — sharp, dependable, and never misses a
@@ -2393,10 +2454,6 @@
         </div>
         <div class="test-slide">
           <div class="test-card">
-            <div class="test-rating">
-              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
-                class="star">★</span><span class="star">★</span>
-            </div>
             <div class="test-quote-icon">"</div>
             <p class="test-text">Adrian worked with Buko Studios on a Unity mobile racing game project. A reliable and
               attentive developer with a great attitude toward both support and development work. I'd happily
@@ -2568,6 +2625,17 @@
       }
       loop();
     })();
+
+    /* ── Emperor's Gambit player ──────────────────────────────── */
+    // The WebGL build is 31 MB, so it only loads when the visitor asks for it.
+    document.getElementById('eg-play').addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = './emperors-gambit/index.html';
+      frame.title = "Emperor's Gambit (playable WebGL build)";
+      frame.allow = 'fullscreen; autoplay';
+      document.getElementById('eg-player').replaceChildren(frame);
+      frame.focus();
+    });
 
     /* ── Testimonials carousel ────────────────────────────────── */
     (function () {
