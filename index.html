@@ -123,12 +123,8 @@
     <div class="hero-media" aria-hidden="true">
       <!-- Each clip comes in two shapes: phones get a portrait cut, wider screens a 16:9 one -->
       <!-- NOTE: Emperor's Gambit is a portrait game, so its 16:9 cut puts the board on the right over a blurred copy -->
-      <video class="active" data-title="Emperor's Gambit" muted playsinline preload="none"
-        poster="./images/emperors-gambit-landscape.jpg">
-        <source src="./images/emperors-gambit-portrait.mp4" type="video/mp4" media="(orientation: portrait)">
-        <source src="./images/emperors-gambit-landscape.mp4" type="video/mp4">
-      </video>
-      <video data-title="Last Keep" muted playsinline preload="none" poster="./images/last-keep-landscape.jpg">
+      <video class="active" data-title="Last Keep" muted playsinline preload="none"
+        poster="./images/last-keep-landscape.jpg">
         <source src="./images/last-keep-portrait.mp4" type="video/mp4" media="(orientation: portrait)">
         <source src="./images/last-keep-landscape.mp4" type="video/mp4">
       </video>
@@ -136,8 +132,13 @@
         <source src="./images/myth-haven-portrait.mp4" type="video/mp4" media="(orientation: portrait)">
         <source src="./images/myth-haven-landscape.mp4" type="video/mp4">
       </video>
+      <video data-title="Emperor's Gambit" muted playsinline preload="none"
+        poster="./images/emperors-gambit-landscape.jpg">
+        <source src="./images/emperors-gambit-portrait.mp4" type="video/mp4" media="(orientation: portrait)">
+        <source src="./images/emperors-gambit-landscape.mp4" type="video/mp4">
+      </video>
     </div>
-    <p class="hero-media-caption" aria-hidden="true">Emperor's Gambit</p>
+    <p class="hero-media-caption" aria-hidden="true">Last Keep</p>
     <div class="hero-eyebrow reveal">
       Available for work
     </div>
@@ -539,33 +540,6 @@
 
       <article class="case reveal">
         <div class="case-media">
-          <img src="./images/cards-and-magic.webp" alt="Cards and Magic battle screen" width="720" height="720"
-            loading="lazy">
-        </div>
-        <div class="case-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Unity</span>
-            <span class="proj-tag">Photon PUN</span>
-            <span class="proj-tag cyan">Multiplayer</span>
-          </div>
-          <h3 class="case-title">Cards and Magic</h3>
-          <p class="case-summary">A turn-based multiplayer card battler where players attack, defend, and play around
-            each other's hands.</p>
-          <dl class="case-facts">
-            <dt>Stack</dt>
-            <dd>Unity, C#, Photon PUN, in-app purchases</dd>
-            <dt>Hard problem</dt>
-            <dd>Keeping two players' decks, shuffles, hands, and turn order in sync over Photon. The same rules also
-              drive an AI opponent for single-player, along with accounts, a shop, and inventory.</dd>
-            <dt>Number</dt>
-            <dd>Target was 60 FPS; after optimization it runs at up to 120 FPS</dd>
-          </dl>
-        </div>
-      </article>
-
-
-      <article class="case reveal">
-        <div class="case-media">
           <img src="./images/playable-ads.webp" alt="Illustration of casual game genres on three phones: a word puzzle, a hexagon sort, and a superhero game"
             width="1376" height="768" loading="lazy">
         </div>
@@ -594,10 +568,18 @@
       </article>
     </div>
 
-    <h3 class="other-title reveal">Other work</h3>
+    <h3 class="other-title reveal">Non-confidential client projects</h3>
     <ul class="other-list">
       <li class="other-item reveal">
-        <img src="./images/last-keep.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="other-thumb"><img src="./images/cards-and-magic.webp" alt="" width="720" height="720" loading="lazy"></div>
+        <div>
+          <p class="other-name">Cards and Magic <span>Unity · Photon PUN · Multiplayer</span></p>
+          <p class="other-desc">Turn-based multiplayer card battler with decks, hands, and turns synced over Photon, an
+            AI opponent for single-player, accounts, a shop, and in-app purchases. Runs at up to 120 FPS.</p>
+        </div>
+      </li>
+      <li class="other-item reveal">
+        <div class="other-thumb"><img src="./images/last-keep.webp" alt="" width="720" height="720" loading="lazy"></div>
         <div>
           <p class="other-name">Last Keep <span>Client project · finished prototype · Unity 2D</span></p>
           <p class="other-desc">Top-down pixel-art defense: hold the keep against enemy waves, spawn allies, run gold
@@ -606,7 +588,7 @@
         </div>
       </li>
       <li class="other-item reveal">
-        <img src="./images/digifight.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="other-thumb"><img src="./images/digifight.webp" alt="" width="720" height="720" loading="lazy"></div>
         <div>
           <p class="other-name">Digifight <span>Unity · Multiplayer · Web3</span></p>
           <p class="other-desc">Online PvP battle game: networked matches plus blockchain integration for in-game
@@ -614,21 +596,21 @@
         </div>
       </li>
       <li class="other-item reveal">
-        <img src="./images/vr-arch-viz.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="other-thumb"><img src="./images/vr-arch-viz.webp" alt="" width="720" height="720" loading="lazy"></div>
         <div>
           <p class="other-name">VR Architectural Viz <span>Unreal Engine 5 · C++ · Quest 2/3</span></p>
           <p class="other-desc">A VR real-estate walkthrough with locomotion, grabbable objects, and in-world UI.</p>
         </div>
       </li>
       <li class="other-item reveal">
-        <img src="./images/iquiz.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="other-thumb"><img src="./images/iquiz.webp" alt="" width="720" height="720" loading="lazy"></div>
         <div>
           <p class="other-name">IQuiz <span>Unity · Mobile</span></p>
           <p class="other-desc">A quiz game with four modes, accounts, and a leaderboard.</p>
         </div>
       </li>
       <li class="other-item reveal">
-        <img src="./images/rags-to-riches.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="other-thumb"><img src="./images/rags-to-riches.webp" alt="" width="720" height="720" loading="lazy"></div>
         <div>
           <p class="other-name">Rags to Riches <span>Unity · 3D</span></p>
           <p class="other-desc">A life sim: go from broke to rich through jobs, investments, and day-to-day decisions.
@@ -636,7 +618,7 @@
         </div>
       </li>
       <li class="other-item reveal">
-        <img src="./images/bubbly-typing.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="other-thumb"><img src="./images/bubbly-typing.webp" alt="" width="720" height="720" loading="lazy"></div>
         <div>
           <p class="other-name">Bubbly Typing <span>Unity · Mobile</span></p>
           <p class="other-desc">A typing trainer with four game modes.</p>
