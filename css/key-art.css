@@ -1,0 +1,737 @@
+/* Key Art design layer. Loads after main.css and restyles it: black, white, and steel, condensed uppercase
+   titles, a full-bleed hero slideshow, and image-first project cards. Remove its <link> to get Classic back. */
+
+/* ─── Tokens ─────────────────────────────────────────────────── */
+:root {
+  --bg: #0a0a0b;
+  --bg-2: #111113;
+  --surface: #141416;
+  --surface-2: #1c1c1f;
+  --panel: #141416;
+  --panel-2: #1c1c1f;
+  --border: rgba(244, 244, 242, 0.08);
+  --border-2: rgba(244, 244, 242, 0.18);
+  --primary: #f4f4f2;
+  --primary-light: #c7d2e2;
+  --primary-dim: rgba(199, 210, 226, 0.10);
+  --secondary: #a3a39e;
+  --accent: #c7d2e2;
+  --accent-dim: rgba(199, 210, 226, 0.08);
+  --gradient: linear-gradient(90deg, #c7d2e2, #f4f4f2);
+  --gradient-2: linear-gradient(90deg, #c7d2e2, #f4f4f2);
+  --fg: #f4f4f2;
+  --fg-2: #d6d6d1;
+  --on-surface: #f4f4f2;
+  --on-surface-2: #a3a39e;
+  --muted: #a3a39e;
+  --muted-2: #77777a;
+  --on-primary: #0a0a0b;
+  --overlay: rgba(10, 10, 11, 0.62);
+  --overlay-strong: rgba(10, 10, 11, 0.92);
+  --radius: 4px;
+  --radius-sm: 2px;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', 'Segoe UI', sans-serif;
+  --font-mono: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  /* Percent, not vw, so the scrollbar doesn't shift the hero and navbar off the 1200px content column */
+  --gutter: max(48px, calc((100% - 1104px) / 2));
+}
+
+body {
+  font-size: 17px;
+}
+
+/* Labels use the condensed face, so they need wider tracking than the mono they replace */
+.nav-links a,
+.nav-cta,
+.btn,
+.hero-eyebrow,
+.hero-tagline,
+.hero-social a,
+.stat-label,
+.section-sub,
+.skill-group-title,
+.skill-tag,
+.tl-date .year,
+.tl-date .type,
+.tl-company,
+.case-facts dt,
+.case-more summary,
+.proj-tag,
+.proj-link,
+.test-author-role,
+.social-btn,
+.form-label,
+.footer-link,
+footer p,
+.mobile-menu a {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font-body);
+}
+
+/* ─── Navigation: full-width bar over the hero ───────────────── */
+#navbar {
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: none;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px var(--gutter);
+  background: linear-gradient(to bottom, var(--overlay), transparent);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#navbar.scrolled {
+  padding-block: 14px;
+  background: var(--overlay-strong);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.18em;
+}
+
+.nav-links {
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--fg-2);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: transparent;
+  color: var(--fg);
+}
+
+.nav-cta {
+  font-size: 14px;
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.nav-cta:hover {
+  transform: none;
+}
+
+.mobile-menu {
+  background: var(--overlay-strong);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────── */
+.btn {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 30px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn-ghost {
+  color: var(--fg);
+  border-color: rgba(244, 244, 242, 0.35);
+}
+
+.btn-ghost:hover {
+  border-color: var(--fg);
+}
+
+/* ─── Hero: full-bleed slideshow ─────────────────────────────── */
+#hero {
+  max-width: none;
+  justify-content: flex-end;
+  padding: 140px var(--gutter) 64px;
+}
+
+#hero>.hero-media {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg);
+}
+
+.hero-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.hero-media video.active {
+  opacity: 1;
+}
+
+/* Gradients keep the text readable over any clip: from the top (under the nav), the bottom, and the left */
+.hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, var(--bg) 0%, var(--overlay-strong) 9%, transparent 24%),
+    linear-gradient(to top, var(--bg) 0%, var(--overlay) 24%, transparent 60%),
+    linear-gradient(to right, var(--overlay-strong) 0%, var(--overlay) 45%, transparent 80%);
+}
+
+#hero>.hero-media-caption {
+  display: block;
+  position: absolute;
+  right: var(--gutter);
+  bottom: 64px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-media-caption::before {
+  content: 'Now showing · ';
+  color: var(--muted-2);
+}
+
+.hero-eyebrow {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  color: var(--primary-light);
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: clamp(3.4rem, 9vw, 8.5rem);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.hero-tagline {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--fg-2);
+  margin-bottom: 18px;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--fg-2);
+  margin-bottom: 36px;
+}
+
+.hero-cta {
+  margin-bottom: 32px;
+}
+
+.hero-social a {
+  font-size: 14px;
+  color: var(--fg-2);
+}
+
+.hero-stats {
+  margin-top: 48px;
+  max-width: 880px;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border-2);
+  border-radius: 0;
+}
+
+.stat-item {
+  padding: 20px 32px 0 0;
+  border-right: 0;
+}
+
+.stat-num {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.stat-label {
+  font-size: 13px;
+}
+
+/* ─── Section base ───────────────────────────────────────────── */
+.section {
+  padding-block: 112px;
+}
+
+.section-title {
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.section-sub {
+  font-size: 15px;
+}
+
+.divider hr {
+  background: var(--border);
+}
+
+/* ─── About ──────────────────────────────────────────────────── */
+.about-body p {
+  font-size: 18px;
+}
+
+.about-highlight {
+  border-left-color: var(--primary-light);
+}
+
+.about-highlight p {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+
+.skill-group-title {
+  font-size: 14px;
+}
+
+.skill-tag {
+  font-size: 14px;
+  background: transparent;
+  border-color: var(--border-2);
+}
+
+.skill-tag:hover {
+  background: transparent;
+  transform: none;
+}
+
+.skill-tag.featured {
+  background: var(--primary-dim);
+  border-color: var(--primary-light);
+  color: var(--fg);
+}
+
+.skill-tag.featured:hover {
+  background: var(--primary-dim);
+}
+
+/* ─── Experience ─────────────────────────────────────────────── */
+.timeline::before {
+  background: var(--border-2);
+}
+
+.tl-dot {
+  background: var(--fg);
+  box-shadow: none;
+}
+
+.tl-date .year {
+  font-size: 16px;
+}
+
+.tl-date .type {
+  font-size: 12px;
+}
+
+.tl-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border-2);
+  border-radius: 0;
+  padding: 20px 0 0;
+}
+
+.tl-card:hover {
+  border-color: var(--border-2);
+}
+
+.tl-role {
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.tl-company {
+  font-size: 14px;
+}
+
+.tl-list li {
+  font-size: 16px;
+}
+
+.tl-list li::before {
+  border-radius: 0;
+  background: var(--muted);
+}
+
+/* ─── Work: image-first case studies ─────────────────────────── */
+.case-list {
+  gap: 112px;
+}
+
+.case {
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.case-media {
+  aspect-ratio: 16 / 9;
+  max-width: none;
+  border-radius: 0;
+  background: var(--panel);
+}
+
+/* The screenshots are 720px squares: show them whole at near-native size instead of cropping and upscaling */
+.case-media img,
+.case-media video {
+  object-fit: contain;
+}
+
+/* Emperor's Gambit is portrait, so the wide frame shows a blurred still of the board behind the clip */
+#eg-player {
+  background: var(--bg) url('../images/emperors-gambit-backdrop.jpg') center / cover;
+}
+
+.case-media--phone {
+  aspect-ratio: 16 / 9;
+}
+
+.case-media--diagram {
+  aspect-ratio: auto;
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.case-media--diagram svg {
+  max-width: 420px;
+}
+
+.case-play {
+  bottom: 32px;
+}
+
+/* Title and summary on the left, the facts on the right */
+.case-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 0 64px;
+  align-content: start;
+}
+
+.case-body>* {
+  grid-column: 1;
+}
+
+.case-body>.case-facts,
+.case-body>.case-detail {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  align-self: start;
+}
+
+.case-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 0.92;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.case-summary {
+  font-size: 18px;
+}
+
+.case-facts dt {
+  font-size: 13px;
+}
+
+.case-facts dd {
+  font-size: 16px;
+  color: var(--fg-2);
+}
+
+.case-more summary {
+  font-size: 14px;
+}
+
+.proj-tag {
+  font-size: 12px;
+  font-weight: 600;
+  background: transparent;
+  border-color: var(--border-2);
+  color: var(--primary-light);
+}
+
+.proj-tag.cyan {
+  background: transparent;
+}
+
+.proj-link {
+  font-size: 15px;
+}
+
+.other-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 112px;
+}
+
+.other-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 24px;
+}
+
+.other-item {
+  flex-direction: column;
+  gap: 14px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.other-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 0;
+}
+
+.other-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.other-name span {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.other-desc {
+  font-size: 15px;
+}
+
+/* ─── Testimonials ───────────────────────────────────────────── */
+.test-quote-icon {
+  display: none;
+}
+
+.test-text {
+  font-size: 21px;
+  line-height: 1.6;
+  color: var(--fg);
+}
+
+.test-author-block::before {
+  background: var(--border-2);
+}
+
+.test-author-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.test-author-role {
+  font-size: 13px;
+}
+
+.test-dot.active {
+  background: var(--fg);
+}
+
+/* ─── Contact ────────────────────────────────────────────────── */
+.contact-left p {
+  font-size: 18px;
+}
+
+.contact-item {
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  background: transparent;
+  border-color: var(--border-2);
+}
+
+.contact-item:hover {
+  transform: none;
+  border-color: var(--fg);
+}
+
+.contact-item-icon {
+  color: var(--fg);
+}
+
+.social-btn {
+  font-size: 14px;
+  background: transparent;
+  border-color: var(--border-2);
+}
+
+.contact-form {
+  background: var(--panel);
+  border-color: var(--border-2);
+}
+
+.contact-form h3 {
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.form-label {
+  font-size: 13px;
+}
+
+.form-input,
+.form-textarea {
+  background: var(--bg);
+  border-color: var(--border-2);
+  color: var(--fg);
+  font-size: 16px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--muted-2);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-dim);
+}
+
+/* ─── Footer and fixed controls ──────────────────────────────── */
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.18em;
+}
+
+footer p,
+.footer-link {
+  font-size: 13px;
+}
+
+#back-top:hover,
+.social-btn:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+  background: transparent;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .case-body {
+    grid-template-columns: 1fr;
+  }
+
+  .case-body>.case-facts,
+  .case-body>.case-detail {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .case-media {
+    aspect-ratio: 16 / 9;
+    max-width: none;
+  }
+
+  .other-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 24px;
+  }
+
+  #navbar {
+    padding: 14px var(--gutter);
+  }
+
+  #hero {
+    padding: 120px var(--gutter) 56px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  /* On phones the text spans the full width, so the left fade alone can't keep it off the game's own banners */
+  .hero-media::after {
+    background:
+      linear-gradient(to bottom, var(--bg) 0%, var(--overlay-strong) 9%, transparent 24%),
+      linear-gradient(to top, var(--bg) 0%, rgba(10, 10, 11, 0.8) 45%, rgba(10, 10, 11, 0.62) 100%);
+  }
+
+  /* On phones the caption would collide with the stats, which sit at the bottom of the hero */
+  #hero>.hero-media-caption {
+    display: none;
+  }
+
+  .stat-item {
+    min-width: 50%;
+    border-bottom: 0;
+  }
+
+  .section {
+    padding-block: 80px;
+  }
+
+  .case-list {
+    gap: 80px;
+  }
+
+  .case-media {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .other-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media video {
+    transition: none;
+  }
+}
